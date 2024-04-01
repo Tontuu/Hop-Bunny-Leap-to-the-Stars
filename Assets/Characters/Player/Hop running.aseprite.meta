@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bcdc680a8b40a8745906a7c02505b3eb
+guid: 5df4347aa1d49da45921d8bcdbe61bda
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 16
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 0
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -88,7 +88,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 0
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638469001610048500
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,9 +121,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Hop run_Frame_0
+  - name: Hop running_Frame_0
     originalName: 
-    pivot: {x: 0.55813956, y: 0.64}
+    pivot: {x: 0.55813956, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 43
       height: 50
-    spriteID: d75b6959ade6c2847a229ce0ed0859de
+    spriteID: 31ad8cddf05e2f64a8f0ab05807e5097
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,9 +141,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 161, y: 4}
-  - name: Hop run_Frame_1
+  - name: Hop running_Frame_1
     originalName: 
-    pivot: {x: 0.5609756, y: 0.64}
+    pivot: {x: 0.5609756, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -151,8 +151,8 @@ ScriptedImporter:
       x: 53
       y: 63
       width: 41
-      height: 50
-    spriteID: f404d275006ee044cac3de1f2d3cb8db
+      height: 49
+    spriteID: 7c12453d59d11aa47b630b310e40b3b8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,9 +161,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 53, y: 63}
-  - name: Hop run_Frame_2
+  - name: Hop running_Frame_2
     originalName: 
-    pivot: {x: 0.5609756, y: 0.64}
+    pivot: {x: 0.5609756, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -171,8 +171,8 @@ ScriptedImporter:
       x: 102
       y: 63
       width: 41
-      height: 50
-    spriteID: 58367bb0df5ec2244ba6132f5fd61e10
+      height: 49
+    spriteID: bb2447f56380e3647b73b5e9455886f6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,18 +181,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 102, y: 63}
-  - name: Hop run_Frame_3
+  - name: Hop running_Frame_3
     originalName: 
-    pivot: {x: 0.5897436, y: 0.6530612}
+    pivot: {x: 0.5897436, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 151
+      x: 197
       y: 63
       width: 39
-      height: 49
-    spriteID: a082e1ec8eebabb48ab4c5eaf31cb891
+      height: 48
+    spriteID: 1b3c1249b296eed45b6698a0fbaef450
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,10 +200,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 151, y: 63}
-  - name: Hop run_Frame_4
+    uvTransform: {x: 197, y: 63}
+  - name: Hop running_Frame_4
     originalName: 
-    pivot: {x: 0.5897436, y: 0.64}
+    pivot: {x: 0.5897436, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 39
       height: 50
-    spriteID: d0754ff70d83d3d4e90ab9c6ff05bd2a
+    spriteID: 271c4fdd6d1ee8a40a29731b7b972f72
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -221,18 +221,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 212, y: 4}
-  - name: Hop run_Frame_5
+  - name: Hop running_Frame_5
     originalName: 
-    pivot: {x: 0.6052632, y: 0.64}
+    pivot: {x: 0.6052632, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 198
+      x: 151
       y: 63
       width: 38
       height: 50
-    spriteID: 53642aee629c77546890d384010d002e
+    spriteID: a1756add9d9dca247a98dfc50a914b54
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -240,10 +240,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 198, y: 63}
-  - name: Hop run_Frame_6
+    uvTransform: {x: 151, y: 63}
+  - name: Hop running_Frame_6
     originalName: 
-    pivot: {x: 0.60975605, y: 0.627451}
+    pivot: {x: 0.60975605, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 63
       width: 41
       height: 51
-    spriteID: 5fe97e8008e485c4daecee7f558392a7
+    spriteID: b1a63705a1dbc5c429c5ff3e34a2f0ca
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,9 +261,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 63}
-  - name: Hop run_Frame_7
+  - name: Hop running_Frame_7
     originalName: 
-    pivot: {x: 0.54545456, y: 0.627451}
+    pivot: {x: 0.54545456, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 4
       width: 44
       height: 51
-    spriteID: 51f64e5796521eb4891d7c941ca0f27c
+    spriteID: 349fb70b36516a3498a8a263a6543f3e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -281,9 +281,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Hop run_Frame_8
+  - name: Hop running_Frame_8
     originalName: 
-    pivot: {x: 0.5227273, y: 0.627451}
+    pivot: {x: 0.5227273, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 4
       width: 44
       height: 51
-    spriteID: aac68c58486de664c80d28cbd68d2672
+    spriteID: b4b9e096edb07824a9ab08d1061a2160
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -301,9 +301,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 56, y: 4}
-  - name: Hop run_Frame_9
+  - name: Hop running_Frame_9
     originalName: 
-    pivot: {x: 0.53333336, y: 0.63265306}
+    pivot: {x: 0.53333336, y: -0.020408163}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 4
       width: 45
       height: 49
-    spriteID: 6597e374e993ae144acb161180c6de2d
+    spriteID: 203ffadfd528bca438ab9e4c47bce0a5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -324,131 +324,95 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -546614484
-    name: Hop run
+    guid: 86326594
+    name: Hop running
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Hop run_Frame_0
+    - name: Hop running_Frame_0
       frameIndex: 0
       cellRect:
         x: 8
         y: 0
         width: 43
         height: 50
-      spriteId: d75b6959ade6c2847a229ce0ed0859de
-    - name: Hop run_Frame_1
+      spriteId: 31ad8cddf05e2f64a8f0ab05807e5097
+    - name: Hop running_Frame_1
       frameIndex: 1
       cellRect:
         x: 9
         y: 0
         width: 41
-        height: 50
-      spriteId: f404d275006ee044cac3de1f2d3cb8db
-    - name: Hop run_Frame_2
+        height: 49
+      spriteId: 7c12453d59d11aa47b630b310e40b3b8
+    - name: Hop running_Frame_2
       frameIndex: 2
       cellRect:
         x: 9
         y: 0
         width: 41
-        height: 50
-      spriteId: 58367bb0df5ec2244ba6132f5fd61e10
-    - name: Hop run_Frame_3
+        height: 49
+      spriteId: bb2447f56380e3647b73b5e9455886f6
+    - name: Hop running_Frame_3
       frameIndex: 3
       cellRect:
         x: 9
         y: 0
         width: 39
-        height: 49
-      spriteId: a082e1ec8eebabb48ab4c5eaf31cb891
-    - name: Hop run_Frame_4
+        height: 48
+      spriteId: 1b3c1249b296eed45b6698a0fbaef450
+    - name: Hop running_Frame_4
       frameIndex: 4
       cellRect:
         x: 9
         y: 0
         width: 39
         height: 50
-      spriteId: d0754ff70d83d3d4e90ab9c6ff05bd2a
-    - name: Hop run_Frame_5
+      spriteId: 271c4fdd6d1ee8a40a29731b7b972f72
+    - name: Hop running_Frame_5
       frameIndex: 5
       cellRect:
         x: 9
         y: 0
         width: 38
         height: 50
-      spriteId: 53642aee629c77546890d384010d002e
-    - name: Hop run_Frame_6
+      spriteId: a1756add9d9dca247a98dfc50a914b54
+    - name: Hop running_Frame_6
       frameIndex: 6
       cellRect:
         x: 7
         y: 0
         width: 41
         height: 51
-      spriteId: 5fe97e8008e485c4daecee7f558392a7
-    - name: Hop run_Frame_7
+      spriteId: b1a63705a1dbc5c429c5ff3e34a2f0ca
+    - name: Hop running_Frame_7
       frameIndex: 7
       cellRect:
         x: 8
         y: 0
         width: 44
         height: 51
-      spriteId: 51f64e5796521eb4891d7c941ca0f27c
-    - name: Hop run_Frame_8
+      spriteId: 349fb70b36516a3498a8a263a6543f3e
+    - name: Hop running_Frame_8
       frameIndex: 8
       cellRect:
         x: 9
         y: 0
         width: 44
         height: 51
-      spriteId: aac68c58486de664c80d28cbd68d2672
-    - name: Hop run_Frame_9
+      spriteId: b4b9e096edb07824a9ab08d1061a2160
+    - name: Hop running_Frame_9
       frameIndex: 9
       cellRect:
         x: 8
         y: 1
         width: 45
         height: 49
-      spriteId: 6597e374e993ae144acb161180c6de2d
+      spriteId: 203ffadfd528bca438ab9e4c47bce0a5
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 

@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour
     const string PLAYER_IDLE = "player_idle";
     const string PLAYER_RUN = "player_run";
     const string PLAYER_JUMP = "player_jump";
+    const string PLAYER_RISING = "player_rising";
+    const string PLAYER_FALLING = "player_falling";
 
     // Importants
+    private bool jump = false;
     private float horizontalValue;
     private float jumpValue = 0.0f;
     Vector2 moveInput;
@@ -25,9 +28,12 @@ public class PlayerController : MonoBehaviour
     // Conditions
     private bool canJump = true;
     private bool isCharging = false;
+    private bool isCharged = false;
     private bool isGrounded = false;
     private bool isRunning = false;
     private bool isJumping = false;
+    private bool isRising = false;
+    private bool isFalling = false;
     private bool isFacingRight = true;
 
     // Unity items
@@ -61,6 +67,14 @@ public class PlayerController : MonoBehaviour
         else if (isRunning)
         {
             ChangeAnimationState(PLAYER_RUN);
+        } 
+        else if (isRising) 
+        {
+            ChangeAnimationState(PLAYER_RISING);
+        }
+        else if (isFalling) 
+        {
+            ChangeAnimationState(PLAYER_FALLING);
         }
         else
         {
@@ -71,40 +85,56 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("Velocidade X: " + rb.velocity.x);
+        Debug.Log("Velocidade Y: " + rb.velocity.y);
+        horizontalValue = 0;
         if (isGrounded)
-        {
             isJumping = false;
-
-            if (Input.GetKey("space"))
+        {
+            if (Input.GetKey(KeyCode.Space))
             {
-                jumpValue += 0.05f;
+                rb.velocity = new Vector2(0, 0);
+                jumpValue += 0.10f;
+                jumpValue = Mathf.Clamp(jumpValue, 4f, 25f);
                 isCharging = true;
-            }
-            else
+            } 
+
+            if (Input.GetKeyUp(KeyCode.Space) || jumpValue > 25f)
             {
-                isCharging = false;
+                isCharged = true;
             }
 
-            if (Input.GetKeyUp("space") || jumpValue > 25f)
+            if (isCharging == true && isCharged == true) 
             {
-                isJumping = true;
+                jump = true;
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) {
+                horizontalValue = Input.GetAxisRaw("Horizontal");
+                isRunning = true;
+            } else {
+                isRunning = false;
             }
         }
-
-
+        isFalling = (rb.velocity.y < 0.0f);
+        isRising = (rb.velocity.y > 0.0f);
 
         // Get run input
-        horizontalValue = Input.GetAxisRaw("Horizontal");
-        isRunning = horizontalValue != 0;
         HandleStates();
     }
-
-
     void FixedUpdate()
     {
+        if (jump) {
+            Debug.Log(isCharged);
+            Debug.Log(jumpValue);
+            rb.velocity = new Vector2(horizontalValue * runSpeed, jumpValue);
+            jumpValue = 0f;
+            isCharging = false;
+            isCharged = false;
+            isJumping = true;
+            jump = false;
+        }
         OnRun();
-        OnJump();
     }
 
     void OnRun()
@@ -114,7 +144,7 @@ public class PlayerController : MonoBehaviour
             if (isCharging)
             {
                 isRunning = false;
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                // rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
             // Cannot run either while charging or not on ground
@@ -133,27 +163,12 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    void OnJump()
-    {
-        // If is not grounded, cannot jump
-        if (isJumping)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpValue);
-            jumpValue = 0f;
-
-        }
-    }
-
-
     void ResetJump()
     {
-        isJumping = false;
         isCharging = false;
         canJump = false;
         jumpValue = 0f;
     }
-
     private void setFacingDirection(float horizontalValue)
     {
         if (horizontalValue > 0 && !isFacingRight)
