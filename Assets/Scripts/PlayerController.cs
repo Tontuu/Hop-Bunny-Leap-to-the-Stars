@@ -55,13 +55,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey("space"))
+        {
+            isCharging = true;
+        }
+        else
+        {
+            isCharging = false;
+        }
+
         // Get run input
         horizontalValue = Input.GetAxisRaw("Horizontal");
         isRunning = horizontalValue != 0;
     }
     void FixedUpdate()
     {
-        if (isRunning)
+        if (isRunning && !isCharging)
         {
             rb.velocity = new Vector2(horizontalValue * runSpeed, rb.velocity.y);
             setFacingDirection(horizontalValue);
@@ -69,7 +78,22 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            rb.velocity = new Vector2(0, rb.velocity.y);
             ChangeAnimationState(PLAYER_IDLE);
+        }
+
+        // If is not grounded, cannot jump
+        if (!isGrounded)
+        {
+            canJump = false;
+        }
+        else
+        {
+            if (isCharging)
+            {
+
+            }
+            canJump = true;
         }
     }
 
