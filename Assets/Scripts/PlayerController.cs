@@ -52,48 +52,96 @@ public class PlayerController : MonoBehaviour
         currentState = newState;
     }
 
-    // Update is called once per frame
-    void Update()
+    void HandleStates()
     {
-        if (Input.GetKey("space"))
+        if (isCharging)
         {
-            isCharging = true;
+            ChangeAnimationState(PLAYER_JUMP);
         }
-        else
+        else if (isRunning)
         {
-            isCharging = false;
-        }
-
-        // Get run input
-        horizontalValue = Input.GetAxisRaw("Horizontal");
-        isRunning = horizontalValue != 0;
-    }
-    void FixedUpdate()
-    {
-        if (isRunning && !isCharging)
-        {
-            rb.velocity = new Vector2(horizontalValue * runSpeed, rb.velocity.y);
-            setFacingDirection(horizontalValue);
             ChangeAnimationState(PLAYER_RUN);
         }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
             ChangeAnimationState(PLAYER_IDLE);
         }
+    }
 
-        // If is not grounded, cannot jump
-        if (!isGrounded)
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (isGrounded)
         {
-            canJump = false;
+            isJumping = false;
+
+            if (Input.GetKey("space"))
+            {
+                jumpValue += 0.05f;
+                isCharging = true;
+            }
+            else
+            {
+                isCharging = false;
+            }
+
+            if (Input.GetKeyUp("space") || jumpValue > 25f)
+            {
+                isJumping = true;
+            }
         }
-        else
+
+
+
+        // Get run input
+        horizontalValue = Input.GetAxisRaw("Horizontal");
+        isRunning = horizontalValue != 0;
+        HandleStates();
+    }
+
+
+    void FixedUpdate()
+    {
+        OnRun();
+        OnJump();
+    }
+
+    void OnRun()
+    {
+        if (isRunning)
         {
             if (isCharging)
             {
-
+                isRunning = false;
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
-            canJump = true;
+
+            // Cannot run either while charging or not on ground
+            if (!isCharging && isGrounded)
+            {
+                rb.velocity = new Vector2(horizontalValue * runSpeed, rb.velocity.y);
+                setFacingDirection(horizontalValue);
+            }
+        }
+        else
+        {
+            // Only lose the velocity on the ground, not on the air (falling)
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+        }
+    }
+
+    void OnJump()
+    {
+        // If is not grounded, cannot jump
+        if (isJumping)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpValue);
+            jumpValue = 0f;
+
         }
     }
 
