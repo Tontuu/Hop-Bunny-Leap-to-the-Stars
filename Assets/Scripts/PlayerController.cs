@@ -1,152 +1,98 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float runSpeed = 12.0f;
-    [SerializeField]
-    private bool _isRunning = false;
-    public bool IsRunning
-    {
-        get { return _isRunning; }
-        private set
-        {
-            _isRunning = value;
-            animator.SetBool(AnimationStrings.isRunning, value);
-        }
-    }
+    // Constants
+    const float runSpeed = 17.0f;
+    const float jumpImpulse = 20.0f;
 
-    [SerializeField]
-    private bool _isGrounded = false;
-    public bool IsGrounded
-    {
-        get { return _isGrounded; }
-        private set
-        {
-            _isGrounded = value;
-            animator.SetBool(AnimationStrings.isGrounded, value);
-        }
-    }
+    // Animation States
+    private string currentState;
+    const string PLAYER_IDLE = "player_idle";
+    const string PLAYER_RUN = "player_run";
+    const string PLAYER_JUMP = "player_jump";
 
-    public bool _isFacingRight = true;
-    public bool IsFacingRight
-    {
-        get { return _isFacingRight; }
-        private set
-        {
-            if (_isFacingRight != value)
-            {
-                // Flip the local scale to make the player face the opposite direction
-                transform.localScale *= new Vector2(-1, 1);
-            }
-            _isFacingRight = value;
-        }
-    }
-
-    private bool canJump = true;
-    [SerializeField]
+    // Importants
+    private float horizontalValue;
     private float jumpValue = 0.0f;
-    [SerializeField]
-    private float jumpImpulse = 20.0f;
+    Vector2 moveInput;
+
+    // Conditions
+    private bool canJump = true;
+    private bool isCharging = false;
+    private bool isGrounded = false;
+    private bool isRunning = false;
+    private bool isJumping = false;
+    private bool isFacingRight = true;
+
+    // Unity items
     Rigidbody2D rb;
     Animator animator;
-    Vector2 moveInput;
-    float directionInput;
 
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-    }
-
+    /// ================================================
     // Start is called before the first frame update
+    /// ================================================
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        animator.Play("player_idle");
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+        animator.Play(newState);
+        currentState = newState;
     }
 
     // Update is called once per frame
     void Update()
     {
-        directionInput = Input.GetAxisRaw("Horizontal");
-        if (Input.GetKey("space") && IsGrounded && canJump)
-        {
-            jumpValue += 0.2f;
-        }
-
-
-        if (Input.GetKeyDown("space") && IsGrounded && canJump)
-        {
-            rb.velocity = new Vector2(0.0f, rb.velocity.y);
-        }
-
-        if (jumpValue >= 27f && IsGrounded)
-        {
-            float tempx = directionInput * runSpeed;
-            float tempy = jumpValue;
-            rb.velocity = new Vector2(tempx, tempy);
-            Invoke("ResetJump", 0.1f);
-        }
-
-        if (Input.GetKeyUp("space"))
-        {
-            if (IsGrounded)
-            {
-                rb.velocity = new Vector2(directionInput * runSpeed, jumpValue);
-                jumpValue = 0.0f;
-            }
-            canJump = true;
-        }
+        // Get run input
+        horizontalValue = Input.GetAxisRaw("Horizontal");
+        isRunning = horizontalValue != 0;
     }
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        if (jumpValue == 0.0f && IsGrounded)
+        if (isRunning)
         {
-            rb.velocity = new Vector2(moveInput.x * runSpeed, rb.velocity.y);
-            animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalValue * runSpeed, rb.velocity.y);
+            setFacingDirection(horizontalValue);
+            ChangeAnimationState(PLAYER_RUN);
+        }
+        else
+        {
+            ChangeAnimationState(PLAYER_IDLE);
         }
     }
+
 
     void ResetJump()
     {
+        isJumping = false;
+        isCharging = false;
         canJump = false;
         jumpValue = 0f;
     }
 
-    public void OnRun(InputAction.CallbackContext context)
+    private void setFacingDirection(float horizontalValue)
     {
-
-        if (IsGrounded)
+        if (horizontalValue > 0 && !isFacingRight)
         {
-            moveInput = context.ReadValue<Vector2>();
-            IsRunning = moveInput != Vector2.zero;
-            setFacingDirection(moveInput);
+            GetComponent<SpriteRenderer>().flipX = false;
+            isFacingRight = true;
         }
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        // if (context.started && IsGrounded)
-        // {
-        //     animator.SetTrigger(AnimationStrings.jump);
-        //     rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-        // }
-    }
-
-    private void setFacingDirection(Vector2 moveInput)
-    {
-        if (moveInput.x > 0 && !IsFacingRight)
+        else if (horizontalValue < 0 && isFacingRight)
         {
-            IsFacingRight = true;
-        }
-        else if (moveInput.x < 0 && IsFacingRight)
-        {
-            IsFacingRight = false;
+            GetComponent<SpriteRenderer>().flipX = true;
+            isFacingRight = false;
         }
     }
 
@@ -154,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            IsGrounded = true;
+            isGrounded = true;
         }
     }
 
@@ -162,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            IsGrounded = false;
+            isGrounded = false;
         }
     }
 }

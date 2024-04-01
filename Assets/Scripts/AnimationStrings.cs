@@ -8,6 +8,6 @@ internal class AnimationStrings
 {
     internal static string isRunning = "isRunning";
     internal static string isGrounded = "isGrounded";
+    internal static string isCharging = "isCharging";
     internal static string yVelocity = "yVelocity";
-    internal static string jump = "jump";
 }
