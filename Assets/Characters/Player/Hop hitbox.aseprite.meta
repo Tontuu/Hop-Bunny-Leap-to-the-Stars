@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd90efa9db5e7b044b3222e7a90f71cd
+guid: abdb1d19641dab24f900d19d208f604d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 0
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -88,7 +88,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 0
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638474765838064566
+  platformSettingsDirtyTick: 638476647546935995
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,38 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Hop rising_Frame_0
+  - name: Hop hitbox
     originalName: 
-    pivot: {x: 0.47727275, y: 0.48936167}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 61
-      width: 44
-      height: 47
-    spriteID: b6d9048b135b29247868fb15543d10a1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 61}
-  - name: Hop rising_Frame_1
-    originalName: 
-    pivot: {x: 0.4888889, y: 0.48979592}
+    pivot: {x: 0.4666667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 45
+      width: 30
       height: 49
-    spriteID: c317ded5253a3eb479a4d1c82b2d51d0
+    spriteID: 4d8d27c46689e8a4b9c32de53736b01f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,59 +141,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Hop rising_Frame_2
-    originalName: 
-    pivot: {x: 0.4888889, y: 0.5106383}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 57
-      y: 4
-      width: 45
-      height: 47
-    spriteID: 31061b593feaa9948b79bb44860d9e06
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 57, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 218805367
-    name: Hop rising
+    guid: 585215119
+    name: Hop hitbox
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Hop rising_Frame_0
+    - name: Hop hitbox
       frameIndex: 0
       cellRect:
-        x: 11
-        y: 9
-        width: 44
-        height: 47
-      spriteId: b6d9048b135b29247868fb15543d10a1
-    - name: Hop rising_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 10
-        y: 8
-        width: 45
+        x: 18
+        y: 0
+        width: 30
         height: 49
-      spriteId: c317ded5253a3eb479a4d1c82b2d51d0
-    - name: Hop rising_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 10
-        y: 8
-        width: 45
-        height: 47
-      spriteId: 31061b593feaa9948b79bb44860d9e06
+      spriteId: 4d8d27c46689e8a4b9c32de53736b01f
     linkedCells: []
     parentIndex: -1
   platformSettings:
