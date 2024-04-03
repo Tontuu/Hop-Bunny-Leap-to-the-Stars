@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     // Constants
     const float runSpeed = 17.0f;
-    [SerializeField]
-    public float MAX_JUMP_VALUE = 50.0f;
+    const float MAX_JUMP_VALUE = 35.0f;
 
     // Animation States
     private string currentState;
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
 
     // Conditions
-    private bool canJump = true;
     private bool isCharging = false;
     private bool isCharged = false;
     private bool isGrounded = false;
@@ -149,6 +147,10 @@ public class PlayerController : MonoBehaviour
             isCharging = false;
             isCharged = false;
             jump = false;
+            if (jumpValue < 4f)
+            {
+                animator.speed = 4f;
+            }
             jumpValue = 0f;
         }
         OnRun();
@@ -169,7 +171,6 @@ public class PlayerController : MonoBehaviour
             if (isCharging)
             {
                 isRunning = false;
-                // rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
             // Cannot run either while charging or not on ground
@@ -190,8 +191,8 @@ public class PlayerController : MonoBehaviour
     }
     void ResetJump()
     {
+        animator.speed = 1f;
         isCharging = false;
-        canJump = false;
         jumpValue = 0f;
     }
     private void setFacingDirection(float horizontalValue)
@@ -211,7 +212,7 @@ public class PlayerController : MonoBehaviour
     void OnWallHit() 
     {
         // Invert player
-        rb.velocity = new Vector2((rb.velocity.x * -1) / 3f, rb.velocity.y / 1.5f);
+        rb.velocity = new Vector2((rb.velocity.x * -1) / 2.5f, rb.velocity.y / 1.25f);
 
         if (horizontalValue < 0 && !isFacingRight)
         {
