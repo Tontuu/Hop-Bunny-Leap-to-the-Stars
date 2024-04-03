@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     // Importants
     private bool jump = false;
+    public  float oldDir;
     private float horizontalValue;
     private float jumpValue = 0.0f;
     Vector2 moveInput;
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) {
                 horizontalValue = Input.GetAxisRaw("Horizontal");
+                if (isJumping) { oldDir = horizontalValue; }
                 isRunning = true;
             } else {
                 isRunning = false;
@@ -147,10 +149,6 @@ public class PlayerController : MonoBehaviour
             isCharging = false;
             isCharged = false;
             jump = false;
-            if (jumpValue < 4f)
-            {
-                animator.speed = 4f;
-            }
             jumpValue = 0f;
         }
         OnRun();
@@ -191,7 +189,7 @@ public class PlayerController : MonoBehaviour
     }
     void ResetJump()
     {
-        animator.speed = 1f;
+        oldDir = 0;
         isCharging = false;
         jumpValue = 0f;
     }
@@ -214,12 +212,12 @@ public class PlayerController : MonoBehaviour
         // Invert player
         rb.velocity = new Vector2((rb.velocity.x * -1) / 2.5f, rb.velocity.y / 1.25f);
 
-        if (horizontalValue < 0 && !isFacingRight)
+        if (oldDir < 0 && !isFacingRight)
         {
             GetComponent<SpriteRenderer>().flipX = false;
             isFacingRight = true;
         }
-        else if (horizontalValue > 0 && isFacingRight)
+        else if (oldDir > 0 && isFacingRight)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             isFacingRight = false;
