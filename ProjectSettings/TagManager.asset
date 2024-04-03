@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -38,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2906568899
+    locked: 0
+  - name: Map Elements
+    uniqueID: 3717403773
+    locked: 0
+  - name: Player
+    uniqueID: 3316554217
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
