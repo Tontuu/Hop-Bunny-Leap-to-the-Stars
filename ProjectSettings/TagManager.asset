@@ -43,11 +43,17 @@ TagManager:
   - name: Background
     uniqueID: 2906568899
     locked: 0
-  - name: Map Elements
-    uniqueID: 3717403773
+  - name: Map Elements 02
+    uniqueID: 1556746047
     locked: 0
   - name: Player
     uniqueID: 3316554217
+    locked: 0
+  - name: Map Elements 01
+    uniqueID: 3717403773
+    locked: 0
+  - name: Platform
+    uniqueID: 477197941
     locked: 0
   - name: Default
     uniqueID: 0
