@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     const float horizontalJumpSpeed = 15.0f;
     const float runSpeed = 18.0f;
     const float MAX_JUMP_MAGNITUDE = 52.0f;
-    const float JUMP_CHARGE_MAGNITUDE = 0.40f;
+    const float JUMP_CHARGE_MAGNITUDE = 0.50f;
     const float MIN_CHARGE_MAGNITUDE = 10.0f;
     const float PLAYER_GRAVITY = 7.0f;
 
