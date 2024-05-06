@@ -30,9 +30,12 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
 
     // Misc
+    public ParticleSystem dust;
+    public ParticleSystem wallDust;
+    public ParticleSystem landDust;
     private float oldDirOnJump;
     private float dir;
-    private float oldDir;
+    private float desacceleration_value = 0.83f;
 
     // Conditions
     private bool isCharging = false;
@@ -56,7 +59,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         dir = 0;
-        oldDir = dir;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = PLAYER_GRAVITY;
         animator = GetComponent<Animator>();
@@ -108,18 +110,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         dir = 0;
-        oldDir = dir;
         {
             if (Input.GetKey(KeyCode.Space) && !isJumping)
             {
-                rb.velocity = new Vector2(0, 0);
-                jumpValue += JUMP_CHARGE_MAGNITUDE;
-                jumpValue = Mathf.Clamp(jumpValue, MIN_CHARGE_MAGNITUDE, MAX_JUMP_MAGNITUDE);
                 isCharging = true;
             }
 
-            if (jumpValue >= MAX_JUMP_MAGNITUDE || Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space))
             {
+                jumpValue = Math.Clamp(jumpValue, MIN_CHARGE_MAGNITUDE, MAX_JUMP_MAGNITUDE);
                 isCharged = true;
             }
 
@@ -182,6 +181,12 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+
+        if (isCharging)
+        {
+            rb.velocity = new Vector2(0, 0);
+            jumpValue += JUMP_CHARGE_MAGNITUDE;
+        }
         OnLand();
         if (jump)
         {
@@ -191,6 +196,7 @@ public class PlayerController : MonoBehaviour
             isCharged = false;
             jump = false;
             jumpValue = 0f;
+            CreateDust();
         }
         OnRun();
     }
@@ -221,18 +227,13 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(dir * runSpeed, rb.velocity.y);
             }
-
-            if (isGrounded && dir == 0)
-            {
-            }
-
         }
         else
         {
             // Only lose the velocity on the ground, not on the air (falling)
             if (isGrounded && dir == 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x * 0.2f, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x * desacceleration_value, rb.velocity.y);
             }
         }
     }
@@ -262,6 +263,7 @@ public class PlayerController : MonoBehaviour
 
     void OnWallHit()
     {
+        CreateWallDust();
         // Invert player
         rb.velocity = new Vector2((rb.velocity.x * -1) / 2.5f, rb.velocity.y / 1.25f);
 
@@ -277,6 +279,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void CreateDust()
+    {
+        dust.Play();
+    }
+
+    void CreateWallDust()
+    {
+        ParticleSystem.ShapeModule _editableShape = wallDust.shape;
+        ParticleSystem.VelocityOverLifetimeModule _editableVelocity = wallDust.velocityOverLifetime;
+        int x_offset = 0;
+        if (isFacingRight)
+        {
+            x_offset = -1;
+        }
+        else
+        {
+            x_offset = 1;
+        }
+        _editableShape.position = new Vector3(-x_offset * 2, 1f, 0f);
+        _editableVelocity.xMultiplier = x_offset;
+        wallDust.Play();
+    }
+
+    void CreateLandDust()
+    {
+        landDust.Play();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Wall"))
@@ -287,6 +317,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
+            CreateLandDust();
             isGrounded = true;
             isJumping = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
