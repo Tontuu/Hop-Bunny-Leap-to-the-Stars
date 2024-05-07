@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEditor.Rendering;
+using UnityEngine.Diagnostics;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -12,7 +14,7 @@ public class PlayerController : MonoBehaviour
     const float runSpeed = 18.0f;
     const float MAX_JUMP_MAGNITUDE = 52.0f;
     const float JUMP_CHARGE_MAGNITUDE = 1.00f;
-    const float MIN_CHARGE_MAGNITUDE = 15.0f;
+    const float MIN_JUMP_MAGNITUDE = 15.0f;
     const float PLAYER_GRAVITY = 7.0f;
 
     // Animation States
@@ -118,7 +120,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                jumpValue = Math.Clamp(jumpValue, MIN_CHARGE_MAGNITUDE, MAX_JUMP_MAGNITUDE);
                 isCharged = true;
             }
 
@@ -176,7 +177,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // Get run input
+        // Handle animation states
         HandleStates();
     }
     void FixedUpdate()
@@ -186,6 +187,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
             jumpValue += JUMP_CHARGE_MAGNITUDE;
+            jumpValue = Math.Clamp(jumpValue, MIN_JUMP_MAGNITUDE, MAX_JUMP_MAGNITUDE);
         }
         OnLand();
         if (jump)
@@ -195,8 +197,8 @@ public class PlayerController : MonoBehaviour
             isCharging = false;
             isCharged = false;
             jump = false;
+            CreateDust(jumpValue);
             jumpValue = 0f;
-            CreateDust();
         }
         OnRun();
     }
@@ -263,7 +265,7 @@ public class PlayerController : MonoBehaviour
 
     void OnWallHit()
     {
-        CreateWallDust();
+        CreateWallDust(rb.velocity.magnitude);
         // Invert player
         rb.velocity = new Vector2((rb.velocity.x * -1) / 2.5f, rb.velocity.y / 1.25f);
 
@@ -279,16 +281,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CreateDust()
+    void CreateDust(float magnitude)
     {
+        int speed = Mathf.RoundToInt(Utils.Map(magnitude, MIN_JUMP_MAGNITUDE, MAX_JUMP_MAGNITUDE, 2f, 6f));
+        int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, MIN_JUMP_MAGNITUDE, MAX_JUMP_MAGNITUDE, 20f, 120f));
+        ParticleSystem.VelocityOverLifetimeModule dustVel = dust.velocityOverLifetime;
+        ParticleSystem.EmissionModule dustEmission = dust.emission;
+        dustEmission.rateOverTime = emissionAmount;
+        dustVel.speedModifier = speed;
         dust.Play();
     }
 
-    void CreateWallDust()
+    void CreateWallDust(float magnitude)
     {
-        ParticleSystem.ShapeModule _editableShape = wallDust.shape;
-        ParticleSystem.VelocityOverLifetimeModule _editableVelocity = wallDust.velocityOverLifetime;
+        ParticleSystem.EmissionModule dustEmission = wallDust.emission;
+        ParticleSystem.ShapeModule dustShape = wallDust.shape;
+        ParticleSystem.VelocityOverLifetimeModule dustVelocity = wallDust.velocityOverLifetime;
+        int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, 17f, 45f, 80f, 120f));
         int x_offset = 0;
+
         if (isFacingRight)
         {
             x_offset = -1;
@@ -297,15 +308,24 @@ public class PlayerController : MonoBehaviour
         {
             x_offset = 1;
         }
-        _editableShape.position = new Vector3(-x_offset * 2, 1f, 0f);
-        _editableVelocity.xMultiplier = x_offset;
+        dustShape.position = new Vector3(-x_offset * 2, 1f, 0f);
+        dustVelocity.xMultiplier = x_offset;
+        dustEmission.rateOverTime = emissionAmount;
+
         wallDust.Play();
     }
 
-    void CreateLandDust()
+    void CreateLandDust(float magnitude)
     {
+        int speed = Mathf.RoundToInt(Utils.Map(magnitude, 0f, 80f, 1f, 6f));
+        int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, 0f, 80f, 20f, 120f));
+        ParticleSystem.VelocityOverLifetimeModule dustVel = landDust.velocityOverLifetime;
+        ParticleSystem.EmissionModule dustEmission = landDust.emission;
+        dustEmission.rateOverTime = emissionAmount;
+        dustVel.speedModifier = speed;
         landDust.Play();
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -317,7 +337,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
-            CreateLandDust();
+            CreateLandDust(rb.velocity.magnitude);
             isGrounded = true;
             isJumping = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
