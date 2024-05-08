@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem landDust;
     private float oldDirOnJump;
     private float dir;
-    private float desacceleration_value = 0.83f;
+    private float desacceleration_value = 0.80f;
 
     // Conditions
     private bool isCharging = false;

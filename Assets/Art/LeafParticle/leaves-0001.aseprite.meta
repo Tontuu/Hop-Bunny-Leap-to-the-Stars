@@ -292,6 +292,7 @@ ScriptedImporter:
     cells:
     - name: leaves-0001_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 7
@@ -300,6 +301,7 @@ ScriptedImporter:
       spriteId: c8985591d44a40c47ab6abb22bdc170a
     - name: leaves-0001_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 7
@@ -308,6 +310,7 @@ ScriptedImporter:
       spriteId: 483c21946fa1d9347b98ae84a8d29720
     - name: leaves-0001_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 7
@@ -316,6 +319,7 @@ ScriptedImporter:
       spriteId: 47ef4e8f92938014a927220cb3a7ccc5
     - name: leaves-0001_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 7

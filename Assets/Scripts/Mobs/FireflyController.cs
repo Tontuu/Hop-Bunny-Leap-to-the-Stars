@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Aarthificial.PixelGraphics.Universal;
@@ -10,9 +11,10 @@ public class FireflyController : MonoBehaviour
 
     // Importants
     private float latestDirectionChangeTime;
-    public float fireflyVelocity = 4f;
+    [SerializeField]
+    private float fireflyVelocity = -4f;
     private readonly float directionChangeTime = 8f;
-    private Vector2 movementDirection;
+    public Vector2 movementDirection;
     private Vector2 movementPerSecond;
 
     // Conditions
@@ -20,33 +22,83 @@ public class FireflyController : MonoBehaviour
     private bool isOnWall = false;
     private bool isWalking = false;
     private bool isGrounded = true;
+    private bool isRotated = false;
+    private bool isFacingRight = true;
 
     // Animation States
     private string currentState;
+    const string FF_FLYING = "flying";
+    const string FF_WALKING = "walking";
 
     // Unity items
     Rigidbody2D rb;
     Animator animator;
-    const string FF_FLYING = "flying";
-    const string FF_WALKING = "walking";
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        ChangeAnimationState("flying");
-
-
-        latestDirectionChangeTime = 0f;
-        calculateNewMovementVector();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        movementDirection = new Vector2(fireflyVelocity, 0);
+        SetDirection(fireflyVelocity);
+
+        if (IsOnWall(Vector2.up))
+        {
+            Debug.Log("pinto");
+        } else if (IsOnWall(Vector2.down))
+        {
+            // Debug.Log("cu");
+        } else if (IsOnWall(Vector2.left))
+        {
+            if (IsOnWall(Vector2.down))
+            {
+                fireflyVelocity = Math.Abs(fireflyVelocity);
+            } else 
+            {
+                movementDirection = new Vector2(movementDirection.x, Math.Abs(fireflyVelocity));
+                RotateSprite(-90);
+            }
+        } else if (IsOnWall(Vector2.right))
+        {
+            if (IsOnWall(Vector2.down))
+            {
+                fireflyVelocity = -Math.Abs(fireflyVelocity);
+            } else 
+            {
+                movementDirection = new Vector2(movementDirection.x, -Math.Abs(fireflyVelocity));
+                RotateSprite(90);
+            }
+        } else 
+        {
+        }
+
+        // Handle animation states
+        HandleStates();
+    }
+    private void FixedUpdate()
+    {
+        rb.velocity = movementDirection;
+    }
+
+    void SetDirection(float axis)
+    {
+        if (axis > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else 
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 
     void HandleStates()
     {
-        if (isWalking)
+        if (isGrounded)
         {
             ChangeAnimationState(FF_WALKING);
         }
@@ -63,120 +115,62 @@ public class FireflyController : MonoBehaviour
         currentState = newState;
     }
 
-    void calculateNewMovementVector()
+    bool IsGrounded()
     {
-        // Create a random direction vector with the magnitude of 1, later multiply it with the velocity of the enemy
-        movementDirection = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized * fireflyVelocity;
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+
+        float distance = 1.0f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, LayerMask.GetMask("Platform"));
+        if (hit.collider != null)
+        {
+            return true;
+        }
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    bool IsOnWall(Vector2 direction)
     {
-        //if the changeTime was reached, calculate a new movement vector
-        if (Time.time - latestDirectionChangeTime > directionChangeTime)
-        {
-            latestDirectionChangeTime = Time.time;
-            calculateNewMovementVector();
-        }
+        Vector2 position = transform.position;
 
-        // Moving firefly
-        rb.velocity = movementDirection;
+        float distance = 1.0f;
 
-        // Check facing direction
-        if (rb.velocity.x < 0)
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, LayerMask.GetMask("Platform"));
+        if (hit.collider != null)
         {
-            if (isOnWall)
-            {
-                if (rb.velocity.y < 0) GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
+            return true;
         }
-        else
-        {
-            if (isOnWall)
-            {
-                if (rb.velocity.y < 0) GetComponent<SpriteRenderer>().flipX = false;
-            }
-            else
-            {
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-        }
-
-        if (isOnTop)
-        {
-            GetComponent<SpriteRenderer>().flipY = true;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().flipY = false;
-        }
-
-        // Handle animation states
-        HandleStates();
+        return false;
     }
+
+    void RotateSprite(float degree)
+    {
+        if (!isRotated)
+        {
+            transform.Rotate(0, 0, degree);
+            isRotated = true;
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            isWalking = true;
-        }
-
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            // Check if is colliding with top otherwise colliding with walls
-            Vector2 originPoint = transform.position;
-            Vector2 rayDirectionTop = Vector2.up;
-            RaycastHit2D hittingTop = Physics2D.Raycast(originPoint, rayDirectionTop, 5f, LayerMask.GetMask("Platform"));
-
-            if (hittingTop.collider != null)
-            {
-                isOnTop = true;
-                isWalking = true;
-            }
-            else
-            {
-                isWalking = true;
-                isOnWall = true;
-                Vector2 rayDirectionLeft = Vector2.left;
-                RaycastHit2D hittingLeft = Physics2D.Raycast(originPoint, rayDirectionLeft, 5f, LayerMask.GetMask("Platform"));
-                if (hittingLeft.collider != null)
-                {
-                    transform.Rotate(new Vector3(0, 0, -90));
-                }
-                else
-                {
-                    transform.Rotate(new Vector3(0, 0, 90));
-                }
-            }
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (isOnTop)
         {
-            isOnTop = false;
         }
 
         if (other.gameObject.CompareTag("Wall"))
         {
-            isOnWall = false;
-            isWalking = false;
-            ChangeAnimationState(FF_FLYING);
         }
 
         if (other.gameObject.CompareTag("Ground"))
         {
-            isWalking = false;
-            isGrounded = false;
-            ChangeAnimationState(FF_FLYING);
         }
     }
 }
-
 
