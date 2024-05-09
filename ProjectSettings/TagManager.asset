@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Ground
+  - Corner
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Post Processing Layer
   - Mobs
   - Platform
-  - 
+  - Corners
   - 
   - 
   - 
