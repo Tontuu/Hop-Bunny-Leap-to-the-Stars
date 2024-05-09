@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17ae1d1ea5362af42b445f8f71036987
+guid: ab7cd80ebcac89642b579838ddf088d3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,11 +71,11 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -84,11 +84,11 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638505242557394946
+  platformSettingsDirtyTick: 638506845127060154
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,58 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: leaves-0001_Frame_0
+  - name: butterfly_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.4375}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 29
-      y: 4
-      width: 16
-      height: 16
-    spriteID: c8985591d44a40c47ab6abb22bdc170a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 29, y: 4}
-  - name: leaves-0001_Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: -0.4375}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 28
-      width: 16
-      height: 16
-    spriteID: 483c21946fa1d9347b98ae84a8d29720
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 28}
-  - name: leaves-0001_Frame_2
-    originalName: 
-    pivot: {x: 0.47058824, y: -0.4375}
+    pivot: {x: 0.44444448, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 17
-      height: 16
-    spriteID: 47ef4e8f92938014a927220cb3a7ccc5
+      width: 9
+      height: 8
+    spriteID: c57593f5024b4d44ab192da948060677
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,79 +141,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: leaves-0001_Frame_3
+  - name: butterfly_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.4375}
+    pivot: {x: 0.42857146, y: 0.5555556}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 28
-      y: 28
-      width: 16
-      height: 16
-    spriteID: f7ab53d5b557f2346b1165257fb885ad
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 28, y: 28}
-  spriteSheetImportData:
-  - name: leaves-0001_0
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 28
-      width: 16
-      height: 16
-    spriteID: 44fd3d68f26ed8440968ed033fe52ba7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: leaves-0001_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 28
-      y: 28
-      width: 16
-      height: 16
-    spriteID: b4986fe937554c349b643fd5ba98c911
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: leaves-0001_2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
+      x: 21
       y: 4
-      width: 17
-      height: 16
-    spriteID: d1a90fb770c9d77468c44731aff2fa6e
+      width: 7
+      height: 9
+    spriteID: 806c63349ef80774ba94e4e6bc54c259
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,71 +160,34 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: leaves-0001_3
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 29
-      y: 4
-      width: 16
-      height: 16
-    spriteID: fec007b3bbb7fda438a66ca42ad4645e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 21, y: 4}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -29838894
-    name: leaves-0001
+    guid: 1329152431
+    name: butterfly
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: leaves-0001_Frame_0
+    - name: butterfly_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 8
-        y: 7
-        width: 16
-        height: 16
-      spriteId: c8985591d44a40c47ab6abb22bdc170a
-    - name: leaves-0001_Frame_1
+        x: 1
+        y: 1
+        width: 9
+        height: 8
+      spriteId: c57593f5024b4d44ab192da948060677
+    - name: butterfly_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 8
-        y: 7
-        width: 16
-        height: 16
-      spriteId: 483c21946fa1d9347b98ae84a8d29720
-    - name: leaves-0001_Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 8
-        y: 7
-        width: 17
-        height: 16
-      spriteId: 47ef4e8f92938014a927220cb3a7ccc5
-    - name: leaves-0001_Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 8
-        y: 7
-        width: 16
-        height: 16
-      spriteId: f7ab53d5b557f2346b1165257fb885ad
+        x: 2
+        y: 0
+        width: 7
+        height: 9
+      spriteId: 806c63349ef80774ba94e4e6bc54c259
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -380,4 +242,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 10, y: 10}

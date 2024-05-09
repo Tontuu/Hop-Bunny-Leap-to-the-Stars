@@ -932,6 +932,7 @@ ScriptedImporter:
     cells:
     - name: main-bush_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -940,6 +941,7 @@ ScriptedImporter:
       spriteId: cda32aae888e6c040867ba48bc29656e
     - name: main-bush_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -948,6 +950,7 @@ ScriptedImporter:
       spriteId: 7ca54bc7763e33742a304563564ce96b
     - name: main-bush_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -956,6 +959,7 @@ ScriptedImporter:
       spriteId: bbdb587b0eb7dc24498ad2e55678ccb0
     - name: main-bush_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -964,6 +968,7 @@ ScriptedImporter:
       spriteId: 783bc5603ab43714d91edffe3929368d
     - name: main-bush_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -972,6 +977,7 @@ ScriptedImporter:
       spriteId: 420d2c48059627141a5731fd155679d2
     - name: main-bush_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -980,6 +986,7 @@ ScriptedImporter:
       spriteId: 0571b86b4dcc26146baf54e40f0ba4d8
     - name: main-bush_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -988,6 +995,7 @@ ScriptedImporter:
       spriteId: 75042a8efc57aa449a070dbb8c8246d6
     - name: main-bush_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -996,6 +1004,7 @@ ScriptedImporter:
       spriteId: 96be580529169f44ca084744be08c8bb
     - name: main-bush_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1004,6 +1013,7 @@ ScriptedImporter:
       spriteId: 697ee36e5af3b8e4cb65a130c4edf22c
     - name: main-bush_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1012,6 +1022,7 @@ ScriptedImporter:
       spriteId: f2bf199adf3dce542be9b7de6ceebceb
     - name: main-bush_Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1020,6 +1031,7 @@ ScriptedImporter:
       spriteId: e5213572fc2dc70478afb821ebf91ccc
     - name: main-bush_Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1028,6 +1040,7 @@ ScriptedImporter:
       spriteId: eafc6d15221ce0946b94b1147e919e46
     - name: main-bush_Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1036,6 +1049,7 @@ ScriptedImporter:
       spriteId: 1ab9b9c75c832814c864b76a9ab62007
     - name: main-bush_Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1044,6 +1058,7 @@ ScriptedImporter:
       spriteId: 9019430de429f214a833c9a9696eadf1
     - name: main-bush_Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1052,6 +1067,7 @@ ScriptedImporter:
       spriteId: 70323d736ea74fe48872707b1cf47e5b
     - name: main-bush_Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1060,6 +1076,7 @@ ScriptedImporter:
       spriteId: 172ccd8a2bb95f7469c0656be3a53139
     - name: main-bush_Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1068,6 +1085,7 @@ ScriptedImporter:
       spriteId: 26374ae0cc7cd4243af3bd5f141c7820
     - name: main-bush_Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1076,6 +1094,7 @@ ScriptedImporter:
       spriteId: 79ba835572068b2479e64ce99c9b22ec
     - name: main-bush_Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1084,6 +1103,7 @@ ScriptedImporter:
       spriteId: 30970796fa2069a4693651262b5e3bbf
     - name: main-bush_Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1092,6 +1112,7 @@ ScriptedImporter:
       spriteId: 4d6a74eb4a175af41b78bd91990ced36
     - name: main-bush_Frame_20
       frameIndex: 20
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1100,6 +1121,7 @@ ScriptedImporter:
       spriteId: fc3c4ef2d116ca046ad430ead8d74d39
     - name: main-bush_Frame_21
       frameIndex: 21
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1108,6 +1130,7 @@ ScriptedImporter:
       spriteId: 7710ed08eb1c1bf499c3d82e19495f43
     - name: main-bush_Frame_22
       frameIndex: 22
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1116,6 +1139,7 @@ ScriptedImporter:
       spriteId: 6d3e88ccc39b812439afed91bd28885e
     - name: main-bush_Frame_23
       frameIndex: 23
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1124,6 +1148,7 @@ ScriptedImporter:
       spriteId: ca036c76dd5e9d94a96f5edcd9cb7057
     - name: main-bush_Frame_24
       frameIndex: 24
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1132,6 +1157,7 @@ ScriptedImporter:
       spriteId: a3c3874c6def50647a5b747c27344f72
     - name: main-bush_Frame_25
       frameIndex: 25
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1140,6 +1166,7 @@ ScriptedImporter:
       spriteId: 8bce31ef15685d44697a234ae939a017
     - name: main-bush_Frame_26
       frameIndex: 26
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1148,6 +1175,7 @@ ScriptedImporter:
       spriteId: b2c1d4c394bd8c149b789dc43c3e5342
     - name: main-bush_Frame_27
       frameIndex: 27
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1156,6 +1184,7 @@ ScriptedImporter:
       spriteId: c94273fa2e5a4704daa377ce063d69f1
     - name: main-bush_Frame_28
       frameIndex: 28
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1164,6 +1193,7 @@ ScriptedImporter:
       spriteId: ab313128f7610b8489cd3c8fdca571ca
     - name: main-bush_Frame_29
       frameIndex: 29
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1172,6 +1202,7 @@ ScriptedImporter:
       spriteId: cd648221a899f7146bba91fef8ac7c3a
     - name: main-bush_Frame_30
       frameIndex: 30
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1180,6 +1211,7 @@ ScriptedImporter:
       spriteId: e96283e2635a84142b5a079da025b209
     - name: main-bush_Frame_31
       frameIndex: 31
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1188,6 +1220,7 @@ ScriptedImporter:
       spriteId: 66ffcbc8037147343bf69e933f2ddafd
     - name: main-bush_Frame_32
       frameIndex: 32
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1196,6 +1229,7 @@ ScriptedImporter:
       spriteId: 8c025adfef31ecc459814b4d2ce547d2
     - name: main-bush_Frame_33
       frameIndex: 33
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1204,6 +1238,7 @@ ScriptedImporter:
       spriteId: 65c48a66ab810c9478d9d287a9dc1d1a
     - name: main-bush_Frame_34
       frameIndex: 34
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1212,6 +1247,7 @@ ScriptedImporter:
       spriteId: 9a8aa141619d35d40bdf2bd778ed3cd3
     - name: main-bush_Frame_35
       frameIndex: 35
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1220,6 +1256,7 @@ ScriptedImporter:
       spriteId: 9c8c2e57a505f2740bddf724b715f096
     - name: main-bush_Frame_36
       frameIndex: 36
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1228,6 +1265,7 @@ ScriptedImporter:
       spriteId: 3866c6525313e4744980bc71c89ad627
     - name: main-bush_Frame_37
       frameIndex: 37
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1236,6 +1274,7 @@ ScriptedImporter:
       spriteId: ec39d32ffa2766b40935a71430f212cb
     - name: main-bush_Frame_38
       frameIndex: 38
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64
@@ -1244,6 +1283,7 @@ ScriptedImporter:
       spriteId: f83e2e4c9378fc34cb0bf02b389fff7e
     - name: main-bush_Frame_39
       frameIndex: 39
+      additiveSortOrder: 0
       cellRect:
         x: -172
         y: -64

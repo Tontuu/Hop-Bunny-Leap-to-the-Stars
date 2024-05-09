@@ -6,17 +6,18 @@ TagManager:
   tags:
   - Wall
   - Ground
+  - Corner
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Post Processing Layer
-  - 
-  - 
-  - 
+  - Mobs
+  - Platform
+  - Corners
   - 
   - 
   - 
