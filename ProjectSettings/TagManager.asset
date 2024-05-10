@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Ground
   - Corner
+  - Npc
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Mobs
   - Platform
   - Corners
-  - 
+  - NPC's
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Map Elements 02
     uniqueID: 1556746047
+    locked: 0
+  - name: NPC's
+    uniqueID: 2945746947
     locked: 0
   - name: Player
     uniqueID: 3316554217
