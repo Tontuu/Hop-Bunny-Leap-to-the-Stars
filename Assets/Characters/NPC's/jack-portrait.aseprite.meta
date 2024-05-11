@@ -1,0 +1,1067 @@
+fileFormatVersion: 2
+guid: 69627cdc10990bf44b6bbc8cfcf32e1a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: jack-portrait_Frame_0
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 45
+      height: 41
+    spriteID: 80e2c6786b4ea0c4298d05eb2016c6e2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: jack-portrait_Frame_1
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 53
+      width: 45
+      height: 41
+    spriteID: 71fe861b87ecf664ea479a85a9c485a4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 53}
+  - name: jack-portrait_Frame_2
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 102
+      width: 45
+      height: 41
+    spriteID: 9d17738f1576d9b4aabb8c12bc2d510a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 102}
+  - name: jack-portrait_Frame_3
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 151
+      width: 45
+      height: 41
+    spriteID: a2413ab433d423b45b9dde7decd7bea7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 151}
+  - name: jack-portrait_Frame_4
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 200
+      width: 45
+      height: 41
+    spriteID: 6b7c5e89949e4b84e887d12e4bf93d54
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 200}
+  - name: jack-portrait_Frame_5
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 249
+      width: 45
+      height: 41
+    spriteID: e13ed99e8435e5345a53ce077cd06ca5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 249}
+  - name: jack-portrait_Frame_6
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 298
+      width: 45
+      height: 41
+    spriteID: de38b75ea36589848bb0ad2a223ecbef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 298}
+  - name: jack-portrait_Frame_7
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 249
+      width: 45
+      height: 40
+    spriteID: 599a7a909a277c74c98d94ef6c772472
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 249}
+  - name: jack-portrait_Frame_8
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 297
+      width: 45
+      height: 40
+    spriteID: e530d361d8d1a2947909e3d1301bc2eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 297}
+  - name: jack-portrait_Frame_9
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 345
+      width: 45
+      height: 40
+    spriteID: 45ae5b251e986c44aaa64471249bda43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 345}
+  - name: jack-portrait_Frame_10
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 393
+      width: 45
+      height: 40
+    spriteID: 714270f929296824d9976ea441da5621
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 393}
+  - name: jack-portrait_Frame_11
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 441
+      width: 45
+      height: 40
+    spriteID: d51e4329885b96b41aa2f45f4a4c9451
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 441}
+  - name: jack-portrait_Frame_12
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 4
+      width: 45
+      height: 40
+    spriteID: 390a1a1cf75610c49bf5b0a64e93c02b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 4}
+  - name: jack-portrait_Frame_13
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 52
+      width: 45
+      height: 40
+    spriteID: bc19c00a4f65abc419d771cd9fa712da
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 52}
+  - name: jack-portrait_Frame_14
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 100
+      width: 45
+      height: 40
+    spriteID: 5fcd4a2a489634a4bb990e6cf53ad177
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 100}
+  - name: jack-portrait_Frame_15
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 148
+      width: 45
+      height: 40
+    spriteID: 8f12b87d8a0084c45a171fd9b6674227
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 148}
+  - name: jack-portrait_Frame_16
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 347
+      width: 45
+      height: 41
+    spriteID: 3e5cd0f5f5e65c94a9a6289169c05b8b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 347}
+  - name: jack-portrait_Frame_17
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 396
+      width: 45
+      height: 41
+    spriteID: 569881b64f79a2d4cb32be746420d0c6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 396}
+  - name: jack-portrait_Frame_18
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 445
+      width: 45
+      height: 41
+    spriteID: f85e5086e7cd292488a6152cc25cb575
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 445}
+  - name: jack-portrait_Frame_19
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 4
+      width: 45
+      height: 41
+    spriteID: cbe8b63693c7c5748aa72eb6002211f2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 4}
+  - name: jack-portrait_Frame_20
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 53
+      width: 45
+      height: 41
+    spriteID: e12fc669bdc20b54599a1750e38077fc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 53}
+  - name: jack-portrait_Frame_21
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 102
+      width: 45
+      height: 41
+    spriteID: b3640988006f7894bb72bb526809c7ca
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 102}
+  - name: jack-portrait_Frame_22
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 151
+      width: 45
+      height: 41
+    spriteID: 5003a1c4a95f23e44a0a200a42b92c3f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 151}
+  - name: jack-portrait_Frame_23
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.1707317}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 200
+      width: 45
+      height: 41
+    spriteID: 23994ddaca9b1a444b0b6a7b0cb48ccc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 200}
+  - name: jack-portrait_Frame_24
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 196
+      width: 45
+      height: 40
+    spriteID: 3bbafb585c33dad4a855d9dfd72129f2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 196}
+  - name: jack-portrait_Frame_25
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 244
+      width: 45
+      height: 40
+    spriteID: b959629eaaa49b541ab56b104299de0f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 244}
+  - name: jack-portrait_Frame_26
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 292
+      width: 45
+      height: 40
+    spriteID: 692c3c056072c0e42bea9b53a59e5f43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 292}
+  - name: jack-portrait_Frame_27
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 340
+      width: 45
+      height: 40
+    spriteID: 4d174870426e7f74a8b66d0d8af0c079
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 340}
+  - name: jack-portrait_Frame_28
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 388
+      width: 45
+      height: 40
+    spriteID: 03d2fc8e85a63994e9af519ce4045dde
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 388}
+  - name: jack-portrait_Frame_29
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 110
+      y: 436
+      width: 45
+      height: 40
+    spriteID: dfd0a38a639ad3844b0fcda2f4c90d37
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 110, y: 436}
+  - name: jack-portrait_Frame_30
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 163
+      y: 4
+      width: 45
+      height: 40
+    spriteID: 4709495fd7b9444449fe0321f81d8096
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 163, y: 4}
+  - name: jack-portrait_Frame_31
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.175}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 163
+      y: 52
+      width: 45
+      height: 40
+    spriteID: 783a3173685b6e442b821f683debd941
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 163, y: 52}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 237749017
+    name: jack-portrait
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: jack-portrait_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 80e2c6786b4ea0c4298d05eb2016c6e2
+    - name: jack-portrait_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 71fe861b87ecf664ea479a85a9c485a4
+    - name: jack-portrait_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 9d17738f1576d9b4aabb8c12bc2d510a
+    - name: jack-portrait_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: a2413ab433d423b45b9dde7decd7bea7
+    - name: jack-portrait_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 6b7c5e89949e4b84e887d12e4bf93d54
+    - name: jack-portrait_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: e13ed99e8435e5345a53ce077cd06ca5
+    - name: jack-portrait_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: de38b75ea36589848bb0ad2a223ecbef
+    - name: jack-portrait_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 599a7a909a277c74c98d94ef6c772472
+    - name: jack-portrait_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: e530d361d8d1a2947909e3d1301bc2eb
+    - name: jack-portrait_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 45ae5b251e986c44aaa64471249bda43
+    - name: jack-portrait_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 714270f929296824d9976ea441da5621
+    - name: jack-portrait_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: d51e4329885b96b41aa2f45f4a4c9451
+    - name: jack-portrait_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 390a1a1cf75610c49bf5b0a64e93c02b
+    - name: jack-portrait_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: bc19c00a4f65abc419d771cd9fa712da
+    - name: jack-portrait_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 5fcd4a2a489634a4bb990e6cf53ad177
+    - name: jack-portrait_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 8f12b87d8a0084c45a171fd9b6674227
+    - name: jack-portrait_Frame_16
+      frameIndex: 16
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 3e5cd0f5f5e65c94a9a6289169c05b8b
+    - name: jack-portrait_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 569881b64f79a2d4cb32be746420d0c6
+    - name: jack-portrait_Frame_18
+      frameIndex: 18
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: f85e5086e7cd292488a6152cc25cb575
+    - name: jack-portrait_Frame_19
+      frameIndex: 19
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: cbe8b63693c7c5748aa72eb6002211f2
+    - name: jack-portrait_Frame_20
+      frameIndex: 20
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: e12fc669bdc20b54599a1750e38077fc
+    - name: jack-portrait_Frame_21
+      frameIndex: 21
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: b3640988006f7894bb72bb526809c7ca
+    - name: jack-portrait_Frame_22
+      frameIndex: 22
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 5003a1c4a95f23e44a0a200a42b92c3f
+    - name: jack-portrait_Frame_23
+      frameIndex: 23
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 41
+      spriteId: 23994ddaca9b1a444b0b6a7b0cb48ccc
+    - name: jack-portrait_Frame_24
+      frameIndex: 24
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 3bbafb585c33dad4a855d9dfd72129f2
+    - name: jack-portrait_Frame_25
+      frameIndex: 25
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: b959629eaaa49b541ab56b104299de0f
+    - name: jack-portrait_Frame_26
+      frameIndex: 26
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 692c3c056072c0e42bea9b53a59e5f43
+    - name: jack-portrait_Frame_27
+      frameIndex: 27
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 4d174870426e7f74a8b66d0d8af0c079
+    - name: jack-portrait_Frame_28
+      frameIndex: 28
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 03d2fc8e85a63994e9af519ce4045dde
+    - name: jack-portrait_Frame_29
+      frameIndex: 29
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: dfd0a38a639ad3844b0fcda2f4c90d37
+    - name: jack-portrait_Frame_30
+      frameIndex: 30
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 4709495fd7b9444449fe0321f81d8096
+    - name: jack-portrait_Frame_31
+      frameIndex: 31
+      additiveSortOrder: 0
+      cellRect:
+        x: 9
+        y: 7
+        width: 45
+        height: 40
+      spriteId: 783a3173685b6e442b821f683debd941
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 64, y: 64}

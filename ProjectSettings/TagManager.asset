@@ -45,6 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 2906568899
     locked: 0
+  - name: UI
+    uniqueID: 3055588151
+    locked: 0
   - name: Map Elements 02
     uniqueID: 1556746047
     locked: 0
