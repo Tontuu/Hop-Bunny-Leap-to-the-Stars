@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Corner
   - Npc
+  - PressKey
   layers:
   - Default
   - TransparentFX

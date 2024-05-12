@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     public Image characterIcon;
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
+    public GameObject tutorialOverlay;
+    private bool finishedTutorial = false;
 
     private Queue<DialogueLine> lines;
 
@@ -19,6 +22,8 @@ public class DialogueManager : MonoBehaviour
     public float typingSpeed = 0.030f;
     public Animator animator;
     public Animator spriteAnimator;
+    private float elapsedTime;
+    bool isKeyPressed = false;
 
     private void Awake()
     {
@@ -33,9 +38,32 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && isDialogueActive)
+        if (isDialogueActive)
         {
-            DisplayNextDialogueLine();
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                isKeyPressed = true;
+                if (!finishedTutorial)
+                {
+                    finishedTutorial = true;
+                    tutorialOverlay.GetComponent<Animator>().Play("press-e-hide");
+                }
+
+                elapsedTime = 0f;
+                DisplayNextDialogueLine();
+                isKeyPressed = false;
+            }
+            if (finishedTutorial)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+
+            if (elapsedTime >= 15.0f && !isKeyPressed)
+            {
+                finishedTutorial = false;
+                elapsedTime = 0f;
+                tutorialOverlay.GetComponent<Animator>().Play("press-e-show");
+            }
         }
     }
 
@@ -46,9 +74,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        tutorialOverlay.SetActive(true);
         isDialogueActive = true;
         animator.SetTrigger("start");
-        // animator.Play("dialogue-show-anim");
         lines.Clear();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
