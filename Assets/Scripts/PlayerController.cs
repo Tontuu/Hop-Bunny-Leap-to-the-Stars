@@ -1,10 +1,6 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
-using UnityEditor.Rendering;
-using UnityEngine.Diagnostics;
+using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -29,7 +25,6 @@ public class PlayerController : MonoBehaviour
     // Importants
     private bool jump = false;
     public float jumpValue = 0.0f;
-    Vector2 moveInput;
 
     // Misc
     public ParticleSystem dust;
@@ -40,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private float desacceleration_value = 0.80f;
 
     // Conditions
+    private bool isLookingUp = false;
     private bool isCharging = false;
     private bool isCharged = false;
     private bool isGrounded = false;
@@ -51,6 +47,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
 
     // Unity items
+    public CinemachineVirtualCamera mainCam;
+    public CinemachineVirtualCamera lookUpCam;
     Rigidbody2D rb;
     Animator animator;
 
@@ -64,7 +62,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = PLAYER_GRAVITY;
         animator = GetComponent<Animator>();
-        animator.Play("player_idle");
     }
 
     void ChangeAnimationState(string newState)
@@ -106,12 +103,15 @@ public class PlayerController : MonoBehaviour
         {
             ChangeAnimationState(PLAYER_FALLING);
         }
+
+        animator.SetBool("IsLookingUp", isLookingUp);
     }
 
     // Update is called once per frame
     void Update()
     {
         dir = 0;
+        // Handle inputs
         {
             if (Input.GetKey(KeyCode.Space) && !isJumping)
             {
@@ -148,6 +148,21 @@ public class PlayerController : MonoBehaviour
             else
             {
                 isRunning = false;
+            }
+
+            if (!isRunning && isGrounded && !isCharging)
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    isLookingUp = true;
+                    CameraManager.SwitchCamera(lookUpCam);
+                }
+
+                if (Input.GetKeyUp(KeyCode.UpArrow))
+                {
+                    isLookingUp = false;
+                    CameraManager.SwitchCamera(mainCam);
+                }
             }
         }
 
@@ -240,12 +255,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ResetJump()
-    {
-        oldDirOnJump = 0;
-        isCharging = false;
-        jumpValue = 0f;
-    }
     private void setFacingDirection(float dir)
     {
         if (!isJumping)
@@ -267,7 +276,7 @@ public class PlayerController : MonoBehaviour
     {
         CreateWallDust(rb.velocity.magnitude);
         // Invert player
-        rb.velocity = new Vector2((rb.velocity.x * -1) / 2.5f, rb.velocity.y / 1.25f);
+        rb.velocity = new Vector2(rb.velocity.x * -1 / 2.5f, rb.velocity.y / 1.25f);
 
         if (oldDirOnJump < 0.0 && !isFacingRight)
         {
@@ -298,7 +307,7 @@ public class PlayerController : MonoBehaviour
         ParticleSystem.ShapeModule dustShape = wallDust.shape;
         ParticleSystem.VelocityOverLifetimeModule dustVelocity = wallDust.velocityOverLifetime;
         int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, 17f, 45f, 80f, 120f));
-        int x_offset = 0;
+        int x_offset;
 
         if (isFacingRight)
         {
