@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Ground
   - Corner
+  - Npc
+  - PressKey
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Mobs
   - Platform
   - Corners
-  - 
+  - NPC's
   - 
   - 
   - 
@@ -44,8 +46,14 @@ TagManager:
   - name: Background
     uniqueID: 2906568899
     locked: 0
+  - name: UI
+    uniqueID: 3055588151
+    locked: 0
   - name: Map Elements 02
     uniqueID: 1556746047
+    locked: 0
+  - name: NPC's
+    uniqueID: 2945746947
     locked: 0
   - name: Player
     uniqueID: 3316554217

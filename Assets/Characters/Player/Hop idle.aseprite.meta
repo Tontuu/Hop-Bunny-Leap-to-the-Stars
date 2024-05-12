@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638468999954568137
+  platformSettingsDirtyTick: 638509349493040020
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -772,6 +772,7 @@ ScriptedImporter:
     cells:
     - name: Hop idle_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 0
@@ -780,6 +781,7 @@ ScriptedImporter:
       spriteId: 352fa0c553993b8419cc154dcb3cd689
     - name: Hop idle_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 19
         y: 0
@@ -788,6 +790,7 @@ ScriptedImporter:
       spriteId: 759907b648ab65a4fb5f2bf204484644
     - name: Hop idle_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 20
         y: 0
@@ -796,6 +799,7 @@ ScriptedImporter:
       spriteId: 707312ad0857a744e830a26e0dacd2e6
     - name: Hop idle_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 20
         y: 0
@@ -804,6 +808,7 @@ ScriptedImporter:
       spriteId: 2c72e44632c36c9479aaf8aab2b4080a
     - name: Hop idle_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -812,6 +817,7 @@ ScriptedImporter:
       spriteId: 51f51134a74d90c4dbb3d0db3f02e7c1
     - name: Hop idle_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -820,6 +826,7 @@ ScriptedImporter:
       spriteId: 9ba8d321c0a192c4ca73b4672744e3e7
     - name: Hop idle_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -828,6 +835,7 @@ ScriptedImporter:
       spriteId: 552cf5af0cd832842a3e81985b588423
     - name: Hop idle_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -836,6 +844,7 @@ ScriptedImporter:
       spriteId: 25ae3b95b700c144180c4106bb58cc8c
     - name: Hop idle_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -844,6 +853,7 @@ ScriptedImporter:
       spriteId: c5209c5df7e631140b5a9edca4c68900
     - name: Hop idle_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 0
@@ -852,6 +862,7 @@ ScriptedImporter:
       spriteId: cb0359273bae42e468641d258b1c9a46
     - name: Hop idle_Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -860,6 +871,7 @@ ScriptedImporter:
       spriteId: 2654f498bec0e9b4486b80554b2cc275
     - name: Hop idle_Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 14
         y: 0
@@ -868,6 +880,7 @@ ScriptedImporter:
       spriteId: fd42a0a417d2f4d4e815d9c9ff5e316b
     - name: Hop idle_Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -876,6 +889,7 @@ ScriptedImporter:
       spriteId: ffe3b537be959b842b8969ddc53a5071
     - name: Hop idle_Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -884,6 +898,7 @@ ScriptedImporter:
       spriteId: f75c9e3575f29114faf9548508e52447
     - name: Hop idle_Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -892,6 +907,7 @@ ScriptedImporter:
       spriteId: 033a7a201a58da64ca36dfde93da9c09
     - name: Hop idle_Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -900,6 +916,7 @@ ScriptedImporter:
       spriteId: 69544efc9b9356f4b9a96fc463bc7f8b
     - name: Hop idle_Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -908,6 +925,7 @@ ScriptedImporter:
       spriteId: adfc878f0b26d9f4c9c8bdc73f98dfaf
     - name: Hop idle_Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 0
@@ -916,6 +934,7 @@ ScriptedImporter:
       spriteId: 40af658136050534fb07f8e168e06db1
     - name: Hop idle_Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 19
         y: 0
@@ -924,6 +943,7 @@ ScriptedImporter:
       spriteId: 4c6c7452fea086346a3bb51e559ac791
     - name: Hop idle_Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: 20
         y: 0
@@ -932,6 +952,7 @@ ScriptedImporter:
       spriteId: e719217b7e564de4e93beddf88fec31b
     - name: Hop idle_Frame_20
       frameIndex: 20
+      additiveSortOrder: 0
       cellRect:
         x: 20
         y: 0
@@ -940,6 +961,7 @@ ScriptedImporter:
       spriteId: 4ad628b21fa394b4b95705c6a3e19840
     - name: Hop idle_Frame_21
       frameIndex: 21
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -948,6 +970,7 @@ ScriptedImporter:
       spriteId: c5366261e6efb934d9ed69875411b68f
     - name: Hop idle_Frame_22
       frameIndex: 22
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -956,6 +979,7 @@ ScriptedImporter:
       spriteId: 23d35007f7f455d4bad3be9f6a470137
     - name: Hop idle_Frame_23
       frameIndex: 23
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -964,6 +988,7 @@ ScriptedImporter:
       spriteId: 5ffb2f6cf023d6044a9f42f8a1c49da0
     - name: Hop idle_Frame_24
       frameIndex: 24
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -972,6 +997,7 @@ ScriptedImporter:
       spriteId: 0968b64f3aaa8634ab5570f3e26a3ce9
     - name: Hop idle_Frame_25
       frameIndex: 25
+      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 0
@@ -980,6 +1006,7 @@ ScriptedImporter:
       spriteId: d8f840911931da94c808c11164909d23
     - name: Hop idle_Frame_26
       frameIndex: 26
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -988,6 +1015,7 @@ ScriptedImporter:
       spriteId: 70b67bf7d8f96784c96b24506b8ee241
     - name: Hop idle_Frame_27
       frameIndex: 27
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -996,6 +1024,7 @@ ScriptedImporter:
       spriteId: dc9343ed881b625488bbf2395a80c3eb
     - name: Hop idle_Frame_28
       frameIndex: 28
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -1004,6 +1033,7 @@ ScriptedImporter:
       spriteId: 2661a7270d89c114f90c312cfab7fce5
     - name: Hop idle_Frame_29
       frameIndex: 29
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -1012,6 +1042,7 @@ ScriptedImporter:
       spriteId: e94e51dc08a2621448c0e48e17408b89
     - name: Hop idle_Frame_30
       frameIndex: 30
+      additiveSortOrder: 0
       cellRect:
         x: 15
         y: 0
@@ -1020,6 +1051,7 @@ ScriptedImporter:
       spriteId: c6438271b94047244a0b4c5cfa892c2f
     - name: Hop idle_Frame_31
       frameIndex: 31
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 0
@@ -1054,6 +1086,18 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 2048
