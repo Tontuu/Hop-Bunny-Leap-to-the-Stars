@@ -65,6 +65,7 @@ public class DialogueManager : MonoBehaviour
                 tutorialOverlay.GetComponent<Animator>().Play("press-e-show");
             }
         }
+        Debug.Log(isDialogueActive);
     }
 
     public bool CanDisableTrigger()
