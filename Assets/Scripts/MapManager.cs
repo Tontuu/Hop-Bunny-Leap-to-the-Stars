@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public CinemachineVirtualCamera cam1;
+    public CinemachineVirtualCamera cam2;
+    float playerHeight;
+    public GameObject Player;
+
     void Start()
     {
-        
+        playerHeight = Player.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if ((Player.transform.position.y - playerHeight) < gameObject.transform.position.y)
+        {
+            CameraManager.SwitchCamera(cam1);
+        }
+        else
+        {
+            CameraManager.SwitchCamera(cam2);
+        }
     }
 }
