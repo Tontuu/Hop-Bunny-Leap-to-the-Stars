@@ -7,6 +7,7 @@ public class MapManager : MonoBehaviour
 {
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
+    public CinemachineVirtualCamera lookUpCam;
     float playerHeight;
     public GameObject Player;
 

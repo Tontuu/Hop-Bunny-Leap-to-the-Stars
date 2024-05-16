@@ -32,10 +32,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem landDust;
     private float oldDirOnJump;
     private float dir;
-    private float desacceleration_value = 0.80f;
+    private float desacceleration_value = 0.8f;
 
     // Conditions
-    private bool isLookingUp = false;
+    public bool isLookingUp = false;
     private bool isCharging = false;
     private bool isCharged = false;
     private bool isGrounded = false;
@@ -155,13 +155,11 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     isLookingUp = true;
-                    CameraManager.SwitchCamera(lookUpCam);
                 }
 
                 if (Input.GetKeyUp(KeyCode.UpArrow))
                 {
                     isLookingUp = false;
-                    CameraManager.SwitchCamera(mainCam);
                 }
             }
         }

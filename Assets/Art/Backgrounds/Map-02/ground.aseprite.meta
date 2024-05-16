@@ -123,14 +123,14 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: ground
     originalName: 
-    pivot: {x: 0.5673759, y: 0}
+    pivot: {x: 0.61875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 141
+      width: 160
       height: 120
     spriteID: eeb9924390fc4fc419d703ef4b196735
     spriteBone: []
@@ -156,7 +156,7 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 141
+        width: 160
         height: 120
       spriteId: eeb9924390fc4fc419d703ef4b196735
     linkedCells: []
@@ -213,4 +213,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 160, y: 120}
+  canvasSize: {x: 198, y: 120}
