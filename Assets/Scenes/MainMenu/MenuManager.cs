@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public Animator FadeContainerAnim;
+    public CanvasGroup FadeContainerAlpha;
+
     public Image FadeImage;
     public Animator FadeAnim;
 
@@ -16,12 +19,19 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         MusicManager.Instance.PlayMusic("Estou feliz");
-        StartCoroutine(FadeToGame());
+        StartCoroutine(FadeContainer());
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    IEnumerator FadeContainer()
+    {
+        FadeContainerAnim.SetBool("FadeOut", true);
+        yield return new WaitUntil(() => FadeContainerAlpha.alpha == 0);
+        StartCoroutine(FadeToGame());
     }
 
     IEnumerator FadeToGame()
