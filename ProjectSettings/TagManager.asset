@@ -9,6 +9,7 @@ TagManager:
   - Corner
   - Npc
   - PressKey
+  - Platform
   layers:
   - Default
   - TransparentFX

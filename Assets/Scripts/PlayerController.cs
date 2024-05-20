@@ -1,13 +1,14 @@
 using UnityEngine;
 using System;
 using Cinemachine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     // Constants
     const float horizontalJumpSpeed = 15.0f;
-    const float runSpeed = 18.0f;
+    const float runSpeed = 15.0f;
     const float MAX_JUMP_MAGNITUDE = 52.0f;
     const float JUMP_CHARGE_MAGNITUDE = 1.00f;
     const float MIN_JUMP_MAGNITUDE = 15.0f;
@@ -30,9 +31,13 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dust;
     public ParticleSystem wallDust;
     public ParticleSystem landDust;
+    public ParticleSystem turningDust;
     private float oldDirOnJump;
-    private float dir;
-    private float desacceleration_value = 0.8f;
+    public float dir;
+    public float desacceleration_value = 0.9f;
+    [SerializeField]
+    public float acceleration = 8f;
+    public float deceleration = 5f;
 
     // Conditions
     public bool isLookingUp = false;
@@ -45,12 +50,19 @@ public class PlayerController : MonoBehaviour
     private bool isRising = false;
     private bool isFalling = false;
     private bool isFacingRight = true;
+    public bool isGoingRight = false;
+    public bool isGoingLeft = false;
+    public bool isTurningDirection = false;
+    public bool isHittingWall = false;
 
     // Unity items
     public CinemachineVirtualCamera mainCam;
     public CinemachineVirtualCamera lookUpCam;
     Rigidbody2D rb;
     Animator animator;
+
+    // Temp
+    public float PrevVelocityX = 0.0f;
 
 
     /// ================================================
@@ -62,6 +74,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = PLAYER_GRAVITY;
         animator = GetComponent<Animator>();
+        PrevVelocityX = rb.velocity.x;
     }
 
     void ChangeAnimationState(string newState)
@@ -110,6 +123,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float currentVelX = rb.velocity.x;
         dir = 0;
         // Handle inputs
         {
@@ -141,13 +155,37 @@ public class PlayerController : MonoBehaviour
                             setFacingDirection(dir);
                         }
                     }
+
+                    // Get direction for turning animations
+                    isGoingRight = dir > 0;
+                    isGoingLeft = dir < 0;
+
                     if (isJumping) { oldDirOnJump = dir; }
                     isRunning = true;
                 }
             }
             else
             {
+                isGoingLeft = false;
+                isGoingRight = false;
                 isRunning = false;
+            }
+
+            // Turning direction on animation
+            // Check if the velocity changes from positive to negative or from negative to positive
+            if (!isGrounded)
+            {
+                isTurningDirection = false;
+            }
+
+            if ((isGoingRight && rb.velocity.x < -2) || (isGoingLeft && rb.velocity.x > 2))
+            {
+                // Avoid bug when hitting on a wall and suddenly changing direction
+                if (!isHittingWall)
+                {
+                    CreateTurningDust();
+                    isTurningDirection = true;
+                }
             }
 
             if (!isRunning && isGrounded && !isCharging)
@@ -186,7 +224,15 @@ public class PlayerController : MonoBehaviour
             if (!isCharging && isGrounded)
             {
                 setFacingDirection(dir);
+                animator.SetBool("IsTurningDirection", isTurningDirection);
             }
+        }
+
+        PrevVelocityX = currentVelX;
+
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            isTurningDirection = false;
         }
 
 
@@ -195,7 +241,6 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-
         if (isCharging)
         {
             rb.velocity = new Vector2(0, 0);
@@ -240,7 +285,30 @@ public class PlayerController : MonoBehaviour
             // Cannot run either while charging or not on ground
             if (!isCharging && isGrounded)
             {
-                rb.velocity = new Vector2(dir * runSpeed, rb.velocity.y);
+                Vector2 currentVelocity = rb.velocity;
+
+                // Calculate target velocity with acceleration  
+                Vector2 targetVelocity = new Vector2(dir * runSpeed, rb.velocity.y);
+
+                // Calculate the change in velocity  
+                Vector2 deltaVelocity = targetVelocity - currentVelocity;
+
+                // Apply acceleration or deceleration  
+                Vector2 accelerationVector = deltaVelocity.normalized * (acceleration * Time.fixedDeltaTime);
+
+                // Clamp acceleration so it doesn't exceed max acceleration  
+                if (accelerationVector.sqrMagnitude > deltaVelocity.sqrMagnitude)
+                {
+                    accelerationVector = deltaVelocity;
+                }
+
+                // Update the velocity  
+                rb.velocity = new Vector2(rb.velocity.x + accelerationVector.x * 10f, rb.velocity.y);
+                // // Limit the velocity to the top speed  
+                // rb.velocity = Vector2.ClampMagnitude(rb.velocity, runSpeed);
+
+
+                // rb.velocity = new Vector2(dir * runSpeed, rb.velocity.y);
             }
         }
         else
@@ -248,7 +316,16 @@ public class PlayerController : MonoBehaviour
             // Only lose the velocity on the ground, not on the air (falling)
             if (isGrounded && dir == 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x * desacceleration_value, rb.velocity.y);
+                Vector2 decelerationVector = -rb.velocity.normalized * (deceleration * 10f * Time.fixedDeltaTime);
+                rb.velocity += decelerationVector;
+
+                // Ensure velocity doesn't go below zero  
+                if (Vector2.Dot(rb.velocity + decelerationVector, decelerationVector) > 0f)
+                {
+                    rb.velocity = Vector2.zero;
+                }
+
+                // rb.velocity = new Vector2(rb.velocity.x * desacceleration_value, rb.velocity.y);
             }
         }
     }
@@ -272,9 +349,13 @@ public class PlayerController : MonoBehaviour
 
     void OnWallHit()
     {
+        isHittingWall = true;
         CreateWallDust(rb.velocity.magnitude);
         // Invert player
-        rb.velocity = new Vector2(rb.velocity.x * -1 / 2.5f, rb.velocity.y / 1.25f);
+        if (!isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * -1 / 2.5f, rb.velocity.y / 1.25f);
+        }
 
         if (oldDirOnJump < 0.0 && !isFacingRight)
         {
@@ -333,6 +414,25 @@ public class PlayerController : MonoBehaviour
         landDust.Play();
     }
 
+    void CreateTurningDust()
+    {
+        ParticleSystem.ShapeModule dustShape = turningDust.shape;
+        ParticleSystem.VelocityOverLifetimeModule dustVelocity = turningDust.velocityOverLifetime;
+        int x_offset;
+
+        if (isFacingRight)
+        {
+            x_offset = -1;
+        }
+        else
+        {
+            x_offset = 1;
+        }
+        dustShape.position = new Vector3(x_offset * 1.2f, 0f, 0f);
+        dustVelocity.xMultiplier = x_offset;
+
+        turningDust.Play();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -353,6 +453,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            isHittingWall = false;
+        }
+
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
