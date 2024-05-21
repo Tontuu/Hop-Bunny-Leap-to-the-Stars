@@ -50,8 +50,6 @@ public class PlayerController : MonoBehaviour
     private bool isHittingWall = false;
     public bool isOneShotSound = false;
     public bool oneShotChargingSFX = false;
-    public bool oneShotLandSFX = false;
-    public bool oneShotHighLandSFX = false;
 
     // Unity items
     public CinemachineVirtualCamera mainCam;

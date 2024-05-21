@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    int currentMap = 1;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     public CinemachineVirtualCamera cam3;
@@ -27,18 +26,15 @@ public class MapManager : MonoBehaviour
         Debug.Log("Trigger1: " + Trigger1.transform.position.y);
         if ((Player.transform.position.y - playerHeight) < Trigger1.transform.position.y)
         {
-            currentMap = 1;
             CameraManager.SwitchCamera(cam1);
         }
         if ((Player.transform.position.y - playerHeight) > Trigger1.transform.position.y)
         {
-            currentMap = 2;
             CameraManager.SwitchCamera(cam2);
         }
 
         if ((Player.transform.position.y - playerHeight) > Trigger2.transform.position.y)
         {
-            currentMap = 3;
             CameraManager.SwitchCamera(cam3);
         }
     }
