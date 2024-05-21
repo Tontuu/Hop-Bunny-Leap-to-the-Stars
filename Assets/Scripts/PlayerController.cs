@@ -32,10 +32,12 @@ public class PlayerController : MonoBehaviour
     private float deceleration = 5f;
 
     // Conditions
+    private bool isOverBush = false;
     public bool isLookingUp = false;
     private bool isCharging = false;
     private bool isCharged = false;
     private bool isGrounded = false;
+    private bool isHighLanded = false;
     private bool isLanded = false;
     private bool isRunning = false;
     private bool isJumping = false;
@@ -44,14 +46,16 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool isGoingRight = false;
     private bool isGoingLeft = false;
-    private bool isTurningDirection = false;
+    public bool isTurningDirection = false;
     private bool isHittingWall = false;
+    private bool isOneShotSound = false;
 
     // Unity items
     public CinemachineVirtualCamera mainCam;
     public CinemachineVirtualCamera lookUpCam;
     Rigidbody2D rb;
     Animator animator;
+    public AudioSource sfx;
     /// ================================================
     // Start is called before the first frame update
     /// ================================================
@@ -61,6 +65,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = PLAYER_GRAVITY;
         animator = GetComponent<Animator>();
+        StartCoroutine(PlayFootstepSound());
     }
 
     void HandleStates()
@@ -77,6 +82,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!sfx.isPlaying)
+        {
+            isOneShotSound = false;
+        }
+
         prevVelocity = rb.velocity;
         // Disable gravity if is not on the air
         if (!isJumping || isGrounded)
@@ -109,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
             {
+                isHighLanded = false;
                 isLanded = false;
                 // Don't move if both keys are being pressed.
                 if (!(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow)))
@@ -158,6 +169,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
+                    isHighLanded = false;
                     isLanded = false;
                     isLookingUp = true;
                 }
@@ -188,11 +200,16 @@ public class PlayerController : MonoBehaviour
 
         if (isRunning)
         {
-            if (!isCharging && isGrounded && !isJumping && isRunning)
+            if (!isCharging && isGrounded && !isJumping)
             {
                 setFacingDirection(dir);
                 animator.SetBool("IsTurningDirection", isTurningDirection);
             }
+        }
+
+        if (!isCharging && isGrounded && !isJumping)
+        {
+            animator.SetBool("IsTurningDirection", isTurningDirection);
         }
 
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
@@ -200,6 +217,18 @@ public class PlayerController : MonoBehaviour
             isTurningDirection = false;
         }
 
+        // Sound manager
+        if (!isOneShotSound)
+        {
+            if (isCharging) { SoundManager.Instance.PlaySound2D("Charging"); }
+            if (isLanded && !isHighLanded) { SoundManager.Instance.PlaySound2D("Land"); }
+            if (isHighLanded) { SoundManager.Instance.PlaySound2D("HighLand"); }
+
+            if (sfx.isPlaying)
+            {
+                isOneShotSound = true;
+            }
+        }
 
         // Handle animation states
         HandleStates();
@@ -214,11 +243,13 @@ public class PlayerController : MonoBehaviour
         }
         if (jump)
         {
+            SoundManager.Instance.PlaySound2D("Jump");
             setFacingDirection(dir);
             rb.velocity = new Vector2(dir * horizontalJumpSpeed, jumpValue);
             isCharging = false;
             isCharged = false;
             isJumping = true;
+            isOneShotSound = false;
             jump = false;
             CreateDust(jumpValue);
             jumpValue = 0f;
@@ -393,6 +424,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Bush"))
+        {
+            isOverBush = true;
+        }
+
         if (other.gameObject.CompareTag("Wall"))
         {
             OnWallHit();
@@ -401,9 +437,16 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
-            if (isJumping && prevVelocity.y < -50f)
+            if (isJumping)
             {
-                isLanded = true;
+                if (prevVelocity.y < -50f)
+                {
+                    isHighLanded = true;
+                }
+                else
+                {
+                    isLanded = true;
+                }
             }
             CreateLandDust(rb.velocity.magnitude);
             isGrounded = true;
@@ -415,6 +458,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Bush"))
+        {
+            isOverBush = false;
+        }
+
         if (other.gameObject.CompareTag("Wall"))
         {
             isHittingWall = false;
@@ -424,6 +472,24 @@ public class PlayerController : MonoBehaviour
         {
             Physics2D.gravity = new Vector2(0, -9.81f);
             isGrounded = false;
+        }
+    }
+    private IEnumerator PlayFootstepSound()
+    {
+        while (true)
+        {
+            if (isRunning && !isCharging && isGrounded)
+            {
+                if (isOverBush) SoundManager.Instance.PlaySound2D("Interactive-Run");
+                else SoundManager.Instance.PlaySound2D("Run");
+            }
+
+            if (jump)
+            {
+                SoundManager.Instance.PlaySound2D("Jump");
+            }
+
+            yield return new WaitForSeconds(0.3f);// Play with this value a bit.
         }
     }
 }
