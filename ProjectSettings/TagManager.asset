@@ -11,6 +11,8 @@ TagManager:
   - PressKey
   - Platform
   - Bush
+  - Map-1-2
+  - Map-2-3
   layers:
   - Default
   - TransparentFX

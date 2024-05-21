@@ -48,7 +48,10 @@ public class PlayerController : MonoBehaviour
     private bool isGoingLeft = false;
     public bool isTurningDirection = false;
     private bool isHittingWall = false;
-    private bool isOneShotSound = false;
+    public bool isOneShotSound = false;
+    public bool oneShotChargingSFX = false;
+    public bool oneShotLandSFX = false;
+    public bool oneShotHighLandSFX = false;
 
     // Unity items
     public CinemachineVirtualCamera mainCam;
@@ -82,11 +85,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!sfx.isPlaying)
-        {
-            isOneShotSound = false;
-        }
-
         prevVelocity = rb.velocity;
         // Disable gravity if is not on the air
         if (!isJumping || isGrounded)
@@ -218,16 +216,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Sound manager
-        if (!isOneShotSound)
+        if (!oneShotChargingSFX) 
         {
-            if (isCharging) { SoundManager.Instance.PlaySound2D("Charging"); }
-            if (isLanded && !isHighLanded) { SoundManager.Instance.PlaySound2D("Land"); }
-            if (isHighLanded) { SoundManager.Instance.PlaySound2D("HighLand"); }
-
-            if (sfx.isPlaying)
-            {
-                isOneShotSound = true;
-            }
+           if (isCharging) { SoundManager.Instance.PlaySound2D("Charging"); oneShotChargingSFX = true;} 
         }
 
         // Handle animation states
@@ -249,7 +240,7 @@ public class PlayerController : MonoBehaviour
             isCharging = false;
             isCharged = false;
             isJumping = true;
-            isOneShotSound = false;
+            oneShotChargingSFX = false;
             jump = false;
             CreateDust(jumpValue);
             jumpValue = 0f;
@@ -441,10 +432,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (prevVelocity.y < -50f)
                 {
+                    SoundManager.Instance.PlaySound2D("HighLand");
                     isHighLanded = true;
                 }
                 else
                 {
+                    SoundManager.Instance.PlaySound2D("Land");
                     isLanded = true;
                 }
             }
