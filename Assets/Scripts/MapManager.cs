@@ -22,8 +22,6 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Hop: " + (Player.transform.position.y - playerHeight));
-        Debug.Log("Trigger1: " + Trigger1.transform.position.y);
         if ((Player.transform.position.y - playerHeight) < Trigger1.transform.position.y)
         {
             CameraManager.SwitchCamera(cam1);

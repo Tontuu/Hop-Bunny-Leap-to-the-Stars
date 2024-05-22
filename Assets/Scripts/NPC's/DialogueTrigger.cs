@@ -25,11 +25,20 @@ public class Dialogue
 
 public class DialogueTrigger : MonoBehaviour
 {
+    [SerializeField]
+    public Vector2 canvasPos;
+    public GameObject DialogueCanvasPrefab;
+    public GameObject DialogueCanvas;
     public Dialogue dialogue;
+
 
     public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogue);
+        if (DialogueCanvas == null)
+        {
+            DialogueCanvas = Instantiate(DialogueCanvasPrefab, canvasPos, Quaternion.identity);
+            DialogueManager.Instance.StartDialogue(dialogue);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

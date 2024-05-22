@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     public Image characterIcon;
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
-    public GameObject tutorialOverlay;
+    public Animator tutorialOverlay;
     private bool finishedTutorial = false;
 
     private Queue<DialogueLine> lines;
@@ -27,6 +27,9 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
+        tutorialOverlay = GameObject.Find("PressKeyContainer").GetComponent<Animator>();
+        Debug.Log(tutorialOverlay);
+
         // We'll be using only one instance of this class
         if (Instance == null)
         {
@@ -46,7 +49,7 @@ public class DialogueManager : MonoBehaviour
                 if (!finishedTutorial)
                 {
                     finishedTutorial = true;
-                    tutorialOverlay.GetComponent<Animator>().Play("press-e-hide");
+                    tutorialOverlay.Play("press-e-hide");
                 }
 
                 elapsedTime = 0f;
@@ -62,7 +65,7 @@ public class DialogueManager : MonoBehaviour
             {
                 finishedTutorial = false;
                 elapsedTime = 0f;
-                tutorialOverlay.GetComponent<Animator>().Play("press-e-show");
+                tutorialOverlay.Play("press-e-show");
             }
         }
     }
@@ -74,9 +77,12 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        tutorialOverlay.SetActive(true);
-        isDialogueActive = true;
         animator.SetTrigger("start");
+        if (!finishedTutorial)
+        {
+            tutorialOverlay.Play("press-e-show");
+        }
+        isDialogueActive = true;
         lines.Clear();
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
@@ -88,25 +94,26 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextDialogueLine()
     {
-        if (lines.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
+        // if (lines.Count == 0)
+        // {
+        //     EndDialogue();
+        //     return;
+        // }
 
-        DialogueLine currentLine = lines.Dequeue();
+        // DialogueLine currentLine = lines.Dequeue();
 
-        int charactersCount = currentLine.line.Length;
-        float mappedTypingSpeed = Mathf.Lerp(0.03f, 0.1f, Mathf.InverseLerp(60, 1, charactersCount));
-        typingSpeed = mappedTypingSpeed;
+        // int charactersCount = currentLine.line.Length;
+        // float mappedTypingSpeed = Mathf.Lerp(0.03f, 0.1f, Mathf.InverseLerp(60, 1, charactersCount));
+        // typingSpeed = mappedTypingSpeed;
 
-        spriteAnimator.Play(currentLine.character.name.ToLower() + "-portrait");
-        characterIcon.sprite = currentLine.character.icon;
-        characterName.text = currentLine.character.name;
+        // spriteAnimator.Play(currentLine.character.name.ToLower() + "-portrait");
+        // Debug.Log(currentLine.character.name.ToLower() + "-portrait");
+        // characterIcon.sprite = currentLine.character.icon;
+        // characterName.text = currentLine.character.name;
 
-        StopAllCoroutines();
+        // StopAllCoroutines();
 
-        StartCoroutine(TypeSentence(currentLine));
+        // StartCoroutine(TypeSentence(currentLine));
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
