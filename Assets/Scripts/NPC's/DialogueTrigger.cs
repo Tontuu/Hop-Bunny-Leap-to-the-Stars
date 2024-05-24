@@ -7,6 +7,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        Debug.Log("DEBUG: Npc POS - " + transform.localPosition);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue, transform.position);
     }
 }

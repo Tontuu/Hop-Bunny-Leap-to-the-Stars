@@ -17,6 +17,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        MusicManager.Instance.PlayMusic("Estou feliz");
         playerHeight = Player.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
