@@ -1,134 +1,101 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
-using UnityEngine.UI;
 using System.Collections;
-using System;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance;
+    public GameObject canvas;
+    public GameObject DialogueBoxPrefab;
+    public List<GameObject> openDialogueObjects;
+    public Queue<string> sentences;
+    public GameObject tutorialOverlay;
+    static bool isDialogueActive;
 
-    public Image characterIcon;
-    public TextMeshProUGUI characterName;
-    public TextMeshProUGUI dialogueArea;
-    public Animator tutorialOverlay;
-    private bool finishedTutorial = false;
-
-    private Queue<DialogueLine> lines;
-
-    public bool isDialogueActive = false;
-    [SerializeField]
-    public float typingSpeed = 0.030f;
-    public Animator animator;
-    public Animator spriteAnimator;
-    private float elapsedTime;
-    bool isKeyPressed = false;
-
-    private void Awake()
-    {
-        tutorialOverlay = GameObject.Find("PressKeyContainer").GetComponent<Animator>();
-        Debug.Log(tutorialOverlay);
-
-        // We'll be using only one instance of this class
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
-        lines = new Queue<DialogueLine>();
-    }
-
-    private void Update()
+    void Update()
     {
         if (isDialogueActive)
         {
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                isKeyPressed = true;
-                if (!finishedTutorial)
-                {
-                    finishedTutorial = true;
-                    tutorialOverlay.Play("press-e-hide");
-                }
-
-                elapsedTime = 0f;
-                DisplayNextDialogueLine();
-                isKeyPressed = false;
-            }
-            if (finishedTutorial)
-            {
-                elapsedTime += Time.deltaTime;
-            }
-
-            if (elapsedTime >= 15.0f && !isKeyPressed)
-            {
-                finishedTutorial = false;
-                elapsedTime = 0f;
-                tutorialOverlay.Play("press-e-show");
+                tutorialOverlay.GetComponent<Animator>().Play("press-e-hide");
+                DisplayNextDialogue();
             }
         }
     }
 
-    public bool CanDisableTrigger()
+    void Start()
     {
-        return isDialogueActive;
-    }
-
-    public void StartDialogue(Dialogue dialogue)
-    {
-        animator.SetTrigger("start");
-        if (!finishedTutorial)
-        {
-            tutorialOverlay.Play("press-e-show");
-        }
-        isDialogueActive = true;
-        lines.Clear();
-
-        foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
-        {
-            lines.Enqueue(dialogueLine);
-        }
-        DisplayNextDialogueLine();
-    }
-
-    public void DisplayNextDialogueLine()
-    {
-        // if (lines.Count == 0)
-        // {
-        //     EndDialogue();
-        //     return;
-        // }
-
-        // DialogueLine currentLine = lines.Dequeue();
-
-        // int charactersCount = currentLine.line.Length;
-        // float mappedTypingSpeed = Mathf.Lerp(0.03f, 0.1f, Mathf.InverseLerp(60, 1, charactersCount));
-        // typingSpeed = mappedTypingSpeed;
-
-        // spriteAnimator.Play(currentLine.character.name.ToLower() + "-portrait");
-        // Debug.Log(currentLine.character.name.ToLower() + "-portrait");
-        // characterIcon.sprite = currentLine.character.icon;
-        // characterName.text = currentLine.character.name;
-
-        // StopAllCoroutines();
-
-        // StartCoroutine(TypeSentence(currentLine));
-    }
-
-    IEnumerator TypeSentence(DialogueLine dialogueLine)
-    {
-        dialogueArea.text = "";
-        foreach (char letter in dialogueLine.line.ToCharArray())
-        {
-            dialogueArea.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
-    }
-
-    public void EndDialogue()
-    {
+        sentences = new Queue<string>();
+        openDialogueObjects = new List<GameObject>();
         isDialogueActive = false;
-        animator.Play("dialogue-hide-anim");
+    }
+
+    public void StartDialogue(DialogueObject dialogue)
+    {
+        foreach (GameObject dialogueObject in openDialogueObjects)
+        {
+            if (dialogueObject != null)
+            {
+                dialogueObject.transform.GetChild(0).GetComponent<Animator>().Play("dialogue-hide-anim");
+            }
+            Invoke("DestroyDialogueObjects", 3);
+        }
+
+        tutorialOverlay.GetComponent<Animator>().Play("press-e-show");
+        isDialogueActive = true;
+        Debug.Log("DEBUG: Starting conversation with " + dialogue.npcName);
+        sentences.Clear();
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        GameObject dialogueContainer = new GameObject("DialogueContainer-" + dialogue.npcName);
+        dialogueContainer.transform.position = dialogue.boxOffset;
+        dialogueContainer = Instantiate(dialogueContainer, canvas.transform);
+        GameObject dialogueBox = Instantiate(DialogueBoxPrefab, dialogue.boxOffset, Quaternion.identity, dialogueContainer.transform);
+        dialogueBox.GetComponent<Animator>().Play("dialogue-show-anim");
+        openDialogueObjects.Add(dialogueContainer);
+
+        DisplayNextDialogue();
+    }
+
+    public void DisplayNextDialogue()
+    {
+        if (sentences.Count == 0)
+        {
+            EndDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+        Debug.Log("DEBUG: " + sentence);
+    }
+
+    private void EndDialogue()
+    {
+        foreach (GameObject dialogueObject in openDialogueObjects)
+        {
+            if (dialogueObject != null)
+            {
+                dialogueObject.transform.GetChild(0).GetComponent<Animator>().Play("dialogue-hide-anim");
+                StartCoroutine(SelfDestruct(dialogueObject));
+            }
+        }
+        isDialogueActive = false;
+    }
+
+    IEnumerator SelfDestruct(GameObject dialogueObject)
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(dialogueObject);
+    }
+
+    private void DestroyDialogueObjects()
+    {
+        for (int index = 0; index < openDialogueObjects.Count - 1; index++)
+        {
+            Destroy(openDialogueObjects[index]);
+        }
     }
 }
