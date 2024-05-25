@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float acceleration = 10f;
     private float deceleration = 5f;
+    Vector3 originalCamPos;
 
     // Conditions
     private bool isOverBush = false;
@@ -46,20 +47,20 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool isGoingRight = false;
     private bool isGoingLeft = false;
-    public bool isTurningDirection = false;
+    private bool isTurningDirection = false;
     private bool isHittingWall = false;
-    public bool isOneShotSound = false;
-    public bool oneShotChargingSFX = false;
+    private bool isOneShotSound = false;
+    private bool oneShotChargingSFX = false;
+    public bool alreadyCreatedCam = false;
 
     // Unity items
-    public CinemachineVirtualCamera mainCam;
-    public CinemachineVirtualCamera lookUpCam;
+    public CinemachineVirtualCamera LookUpCam;
+    public CinemachineVirtualCamera vCam;
+    public Camera mainCam;
     Rigidbody2D rb;
     Animator animator;
     public AudioSource sfx;
-    /// ================================================
-    // Start is called before the first frame update
-    /// ================================================
+
     void Start()
     {
         dir = 0;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = PLAYER_GRAVITY;
         animator = GetComponent<Animator>();
         StartCoroutine(PlayFootstepSound());
+        alreadyCreatedCam = false;
     }
 
     void HandleStates()
@@ -80,7 +82,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsLookingUp", isLookingUp);
     }
 
-    // Update is called once per frame
     void Update()
     {
         prevVelocity = rb.velocity;
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if (dir == -Math.Sign(rb.velocity.x))
                         {
-                            setFacingDirection(dir);
+                            SetFacingDirection(dir);
                         }
                     }
 
@@ -163,16 +164,24 @@ public class PlayerController : MonoBehaviour
 
             if (!isRunning && isGrounded && !isCharging)
             {
+                isHighLanded = false;
+                isLanded = false;
+
+                isLookingUp = Input.GetKey(KeyCode.UpArrow);
+
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    isHighLanded = false;
-                    isLanded = false;
-                    isLookingUp = true;
+                    mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 20f;
                 }
 
                 if (Input.GetKeyUp(KeyCode.UpArrow))
                 {
-                    isLookingUp = false;
+                    alreadyCreatedCam = false;
+                    Invoke("ResetCameraBlend", 0.5f);
+                }
+                if (isLookingUp)
+                {
+                    SetLookUpCam();
                 }
             }
         }
@@ -198,7 +207,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isCharging && isGrounded && !isJumping)
             {
-                setFacingDirection(dir);
+                SetFacingDirection(dir);
                 animator.SetBool("IsTurningDirection", isTurningDirection);
             }
         }
@@ -214,9 +223,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Sound manager
-        if (!oneShotChargingSFX) 
+        if (!oneShotChargingSFX)
         {
-           if (isCharging) { SoundManager.Instance.PlaySound2D("Charging"); oneShotChargingSFX = true;} 
+            if (isCharging) { SoundManager.Instance.PlaySound2D("Charging"); oneShotChargingSFX = true; }
         }
 
         // Handle animation states
@@ -233,7 +242,7 @@ public class PlayerController : MonoBehaviour
         if (jump)
         {
             SoundManager.Instance.PlaySound2D("Jump");
-            setFacingDirection(dir);
+            SetFacingDirection(dir);
             rb.velocity = new Vector2(dir * horizontalJumpSpeed, jumpValue);
             isCharging = false;
             isCharged = false;
@@ -245,6 +254,7 @@ public class PlayerController : MonoBehaviour
         }
         OnRun();
     }
+
 
     void OnRun()
     {
@@ -281,11 +291,6 @@ public class PlayerController : MonoBehaviour
 
                 // Update the velocity  
                 rb.velocity = new Vector2(rb.velocity.x + accelerationVector.x * 10f, rb.velocity.y);
-                // // Limit the velocity to the top speed  
-                // rb.velocity = Vector2.ClampMagnitude(rb.velocity, runSpeed);
-
-
-                // rb.velocity = new Vector2(dir * runSpeed, rb.velocity.y);
             }
         }
         else
@@ -301,13 +306,11 @@ public class PlayerController : MonoBehaviour
                 {
                     rb.velocity = Vector2.zero;
                 }
-
-                // rb.velocity = new Vector2(rb.velocity.x * desacceleration_value, rb.velocity.y);
             }
         }
     }
 
-    private void setFacingDirection(float dir)
+    private void SetFacingDirection(float dir)
     {
         if (!isJumping)
         {
@@ -322,6 +325,23 @@ public class PlayerController : MonoBehaviour
                 isFacingRight = false;
             }
         }
+    }
+
+    void ResetCameraBlend()
+    {
+        mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 0.1f;
+    }
+
+    private void SetLookUpCam()
+    {
+        if (!alreadyCreatedCam)
+        {
+            Debug.Log("Original Cam pos: " + CameraManager.ActiveCam.transform.position);
+            originalCamPos = CameraManager.ActiveCam.transform.position;
+            alreadyCreatedCam = true;
+        }
+        LookUpCam.transform.position = new Vector3(0, originalCamPos.y + 10f, -2f);
+        CameraManager.SwitchCamera(LookUpCam);
     }
 
     void OnWallHit()
@@ -480,7 +500,7 @@ public class PlayerController : MonoBehaviour
                 SoundManager.Instance.PlaySound2D("Jump");
             }
 
-            yield return new WaitForSeconds(0.3f);// Play with this value a bit.
+            yield return new WaitForSeconds(0.3f);
         }
     }
 }

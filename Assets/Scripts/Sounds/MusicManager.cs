@@ -23,6 +23,11 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public bool isPlayingMusic(string musicName)
+    {
+        return musicSource.isPlaying && musicSource.clip.name == musicName;
+    }
+
     public void PlayMusic(string trackName, float fadeDuration = 0.5f)
     {
         StartCoroutine(AnimateMusicCrossfade(musicLibrary.GetClipFromName(trackName), fadeDuration));
@@ -34,7 +39,7 @@ public class MusicManager : MonoBehaviour
         while (percent < 1)
         {
             percent += Time.deltaTime * 1 / fadeDuration;
-            musicSource.volume = Mathf.Lerp(1f, 0, percent);
+            musicSource.volume = Mathf.Lerp(0.4f, 0, percent);
             yield return null;
         }
 
