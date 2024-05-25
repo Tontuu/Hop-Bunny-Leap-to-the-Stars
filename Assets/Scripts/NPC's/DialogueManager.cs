@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using System.Threading;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject tutorialOverlay;
     public List<GameObject> openDialogueObjects;
     public Queue<string> sentences;
-    public Queue<string> npcs;
+    public string npcName;
 
     static bool isDialogueActive;
     private bool finishedTutorial = false;
@@ -61,13 +62,17 @@ public class DialogueManager : MonoBehaviour
         }
 
         sentences = new Queue<string>();
-        npcs = new Queue<string>();
         openDialogueObjects = new List<GameObject>();
         isDialogueActive = false;
     }
 
-    public void StartDialogue(DialogueObject dialogue, Vector2 offset)
+    public void StartDialogue(DialogueObject dialogue, Vector2 offset, Vector2 npcPos)
     {
+        if (!MusicManager.Instance.isPlayingMusic("Estou mal"))
+        {
+            MusicManager.Instance.PlayMusic("Estou mal", 2f);
+        }
+        npcName = dialogue.npcName;
         foreach (GameObject dialogueObject in openDialogueObjects)
         {
             if (dialogueObject != null)
@@ -84,11 +89,10 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-        npcs.Enqueue(dialogue.npcName);
 
         GameObject dialogueContainer = new GameObject("DialogueContainer-" + dialogue.npcName);
-        dialogueContainer.transform.position = dialogue.boxOffset;
-        dialogueContainer = Instantiate(dialogueContainer, offset + dialogue.boxOffset, Quaternion.identity, canvas.transform);
+        dialogueContainer.transform.position = new Vector2(-8, 10) + dialogue.boxOffset;
+        dialogueContainer = Instantiate(dialogueContainer, offset + (Vector2)dialogueContainer.transform.position, Quaternion.identity, canvas.transform);
         GameObject dialogueBox = Instantiate(DialogueBoxPrefab, dialogueContainer.transform.position, Quaternion.identity, dialogueContainer.transform);
         dialogueBox.GetComponent<Animator>().Play("dialogue-show-anim");
         openDialogueObjects.Add(dialogueContainer);
@@ -102,7 +106,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextDialogue()
     {
-        string npcName = "Default";
+        if (npcName == null) { npcName = "Default"; }
         TextMeshProUGUI characterName;
         TextMeshProUGUI dialogueArea;
         Animator spriteAnimator;
@@ -117,14 +121,13 @@ public class DialogueManager : MonoBehaviour
         characterName = dialogue.transform.GetChild(0).transform.Find("Header").GetChild(0).GetComponent<TextMeshProUGUI>();
         dialogueArea = dialogue.transform.GetChild(0).transform.Find("Body").GetChild(0).GetComponent<TextMeshProUGUI>();
         spriteAnimator = dialogue.transform.GetChild(0).transform.Find("Icon").GetChild(0).GetComponent<Animator>();
-
-        if (npcs.Count != 0)
-        {
-            npcName = npcs.Dequeue();
-        }
         string sentence = sentences.Dequeue();
         int charactersCount = sentence.Length;
         float mappedTypingSpeed = Mathf.Lerp(0.03f, 0.1f, Mathf.InverseLerp(80, 1, charactersCount));
+        if (charactersCount < 4)
+        {
+            mappedTypingSpeed = 0.5f;
+        }
         typingSpeed = mappedTypingSpeed;
         spriteAnimator.Play(npcName.ToLower() + "-portrait");
         characterName.text = npcName;
@@ -136,16 +139,41 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence, TextMeshProUGUI dialogueArea)
     {
+        int count = 0;
         dialogueArea.text = "";
+        int characterCount = sentence.Length;
         foreach (char letter in sentence.ToCharArray())
         {
+            count++;
             dialogueArea.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            if (letter != ' ')
+            {
+                if (characterCount >= 15)
+                {
+                    if (count % 2 == 0)
+                    {
+                        SoundManager.Instance.PlaySound2D("Typing");
+                    }
+                }
+                else
+                {
+                    SoundManager.Instance.PlaySound2D("Typing 2");
+                }
+            }
+            if (characterCount <= 13)
+            {
+                yield return new WaitForSeconds(0.35f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
     }
 
     private void EndDialogue()
     {
+        MusicManager.Instance.PlayMusic("Estou feliz", 2f);
         foreach (GameObject dialogueObject in openDialogueObjects)
         {
             if (dialogueObject != null)

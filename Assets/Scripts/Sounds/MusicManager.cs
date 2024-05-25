@@ -23,6 +23,11 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public bool isPlayingMusic(string musicName)
+    {
+        return musicSource.isPlaying && musicSource.clip.name == musicName;
+    }
+
     public void PlayMusic(string trackName, float fadeDuration = 0.5f)
     {
         StartCoroutine(AnimateMusicCrossfade(musicLibrary.GetClipFromName(trackName), fadeDuration));
