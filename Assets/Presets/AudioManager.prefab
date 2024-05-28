@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 930374364723645314}
   - component: {fileID: 4768386772681432129}
   m_Layer: 0
-  m_Name: SFXManager
+  m_Name: SFXSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,6 +139,8 @@ GameObject:
   - component: {fileID: 1909578395129057118}
   - component: {fileID: 5909592696103521827}
   - component: {fileID: 3539529539967095135}
+  - component: {fileID: 840110078220163812}
+  - component: {fileID: 1807837129591053704}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -219,6 +221,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxLibrary: {fileID: 5909592696103521827}
   sfx2DSource: {fileID: 4768386772681432129}
+--- !u!114 &840110078220163812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718113181376513546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a0fe8ea3c0919428f25a33461695fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracks:
+  - trackName: Estou mal
+    clip: {fileID: 8300000, guid: 3744aa451f254544aa697903f2425be5, type: 3}
+  - trackName: Estou feliz
+    clip: {fileID: 8300000, guid: 4f97ab54f3a5cc74abc2f2d8ba1731c6, type: 3}
+  - trackName: Eu piorei
+    clip: {fileID: 8300000, guid: e93fefc7fceb5b24587530222b744569, type: 3}
+--- !u!114 &1807837129591053704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718113181376513546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f32376b82164a74995a342e0035b0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicLibrary: {fileID: 840110078220163812}
+  musicSource: {fileID: 7282752022315321040}
 --- !u!1001 &4585232654742630179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -287,5 +322,10 @@ PrefabInstance:
 --- !u!4 &5833308381106230455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8022626034083036052, guid: 047b9084489d2784094fa49f825a21d4, type: 3}
+  m_PrefabInstance: {fileID: 4585232654742630179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7282752022315321040 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6535722165934254579, guid: 047b9084489d2784094fa49f825a21d4, type: 3}
   m_PrefabInstance: {fileID: 4585232654742630179}
   m_PrefabAsset: {fileID: 0}

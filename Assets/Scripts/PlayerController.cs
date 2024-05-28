@@ -336,7 +336,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!alreadyCreatedCam)
         {
-            Debug.Log("Original Cam pos: " + CameraManager.ActiveCam.transform.position);
             originalCamPos = CameraManager.ActiveCam.transform.position;
             alreadyCreatedCam = true;
         }

@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8022626034083036052}
   - component: {fileID: 6535722165934254579}
-  - component: {fileID: 8944002241523786730}
-  - component: {fileID: 8845806556135364456}
   m_Layer: 0
   m_Name: MusicSource
   m_TagString: Untagged
@@ -130,36 +128,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8944002241523786730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591512669210190871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f32376b82164a74995a342e0035b0c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicLibrary: {fileID: 8845806556135364456}
-  musicSource: {fileID: 6535722165934254579}
---- !u!114 &8845806556135364456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591512669210190871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a0fe8ea3c0919428f25a33461695fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracks:
-  - trackName: Estou mal
-    clip: {fileID: 8300000, guid: 3744aa451f254544aa697903f2425be5, type: 3}
-  - trackName: Estou feliz
-    clip: {fileID: 8300000, guid: 4f97ab54f3a5cc74abc2f2d8ba1731c6, type: 3}
-  - trackName: Eu piorei
-    clip: {fileID: 8300000, guid: e93fefc7fceb5b24587530222b744569, type: 3}

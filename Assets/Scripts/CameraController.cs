@@ -31,8 +31,6 @@ public class CameraController : MonoBehaviour
             FitCamToScreen();
             startScreenWidth = Screen.width;
         }
-
-        CheckLookUp();
     }
 
     private void FitCamToScreen()
@@ -49,15 +47,5 @@ public class CameraController : MonoBehaviour
             newOrthoSize = orthoSizeNormal;
         }
         vcam.m_Lens.OrthographicSize = newOrthoSize;
-    }
-
-    private void CheckLookUp()
-    {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Vector2 newPos = vcam.transform.position;
-            yOffset = Mathf.Lerp(0.5f, 1.5f, 0.1f);
-            vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = yOffset;
-        }
     }
 }
