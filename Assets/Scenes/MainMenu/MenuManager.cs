@@ -8,6 +8,9 @@ public class MenuManager : MonoBehaviour
     public Animator FadeContainerAnim;
     public CanvasGroup FadeContainerAlpha;
 
+    public GameObject MenuScreen;
+    public GameObject OptionScreen;
+
     public Image FadeImage;
     public Animator FadeAnim;
 
@@ -20,6 +23,18 @@ public class MenuManager : MonoBehaviour
     {
         MusicManager.Instance.PlayMusic("Estou feliz");
         StartCoroutine(FadeContainer());
+    }
+
+    public void ShowOptions()
+    {
+        MenuScreen.SetActive(false);
+        OptionScreen.SetActive(true);
+    }
+
+    public void ShowMenu()
+    {
+        MenuScreen.SetActive(true);
+        OptionScreen.SetActive(false);
     }
 
     public void QuitGame()
