@@ -25,12 +25,12 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(FadeContainer());
     }
 
-    public void TriggerButtonSound()
+    static public void TriggerButtonSound()
     {
         SoundManager.Instance.PlaySound2D("Buttons");
     }
 
-    public void TriggerDropdownSound()
+    static public void TriggerDropdownSound()
     {
         SoundManager.Instance.PlaySound2D("Dropdown");
     }
