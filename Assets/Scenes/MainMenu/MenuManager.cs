@@ -25,6 +25,16 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(FadeContainer());
     }
 
+    public void TriggerButtonSound()
+    {
+        SoundManager.Instance.PlaySound2D("Buttons");
+    }
+
+    public void TriggerDropdownSound()
+    {
+        SoundManager.Instance.PlaySound2D("Dropdown");
+    }
+
     public void ShowOptions()
     {
         MenuScreen.SetActive(false);
@@ -44,6 +54,7 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator FadeContainer()
     {
+        SoundManager.Instance.SetActive(false);
         FadeContainerAnim.SetBool("FadeOut", true);
         yield return new WaitUntil(() => FadeContainerAlpha.alpha == 0);
         StartCoroutine(FadeToGame());

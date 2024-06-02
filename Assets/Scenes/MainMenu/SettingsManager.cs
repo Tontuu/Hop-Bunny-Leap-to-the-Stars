@@ -46,11 +46,11 @@ public class SettingsManager : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("MusicVolume", volume * 10);
+        audioMixer.SetFloat("MusicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFXVolume", volume * 10);
+        audioMixer.SetFloat("SFXVolume", volume);
     }
 }
