@@ -13,6 +13,7 @@ TagManager:
   - Bush
   - Map-1-2
   - Map-2-3
+  - Buttons
   layers:
   - Default
   - TransparentFX
