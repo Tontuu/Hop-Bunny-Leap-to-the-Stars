@@ -3,19 +3,28 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using System.Linq;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
     static private Resolution[] resolutions;
+    public TextMeshProUGUI resolutionToggle;
+    public TextMeshProUGUI resolutionLabel;
+
+    void Update()
+    {
+        FlushText();
+    }
 
     void Start()
     {
-        resolutions = Screen.resolutions.Select(resolution => new Resolution {
-             width = resolution.width,
-             height = resolution.height}).Distinct().ToArray();
+        resolutions = Screen.resolutions.Select(resolution => new Resolution
+        {
+            width = resolution.width,
+            height = resolution.height
+        }).Distinct().ToArray();
 
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
@@ -36,6 +45,7 @@ public class SettingsManager : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
+
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
@@ -55,5 +65,22 @@ public class SettingsManager : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVolume", volume);
+    }
+
+
+    public void FlushText()
+    {
+        // Fullscreen toggle
+        if (Screen.fullScreen)
+        {
+            resolutionToggle.text = "on >";
+        }
+        else
+        {
+            resolutionToggle.text = "< off";
+        }
+
+        resolutionLabel.text = Screen.width +
+        " x " + Screen.height;
     }
 }

@@ -97,92 +97,92 @@ public class PlayerController : MonoBehaviour
 
         dir = 0;
         // Handle inputs
+        if (UI.isPaused) return;
+
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-            if (Input.GetKey(KeyCode.Space) && isGrounded)
-            {
-                isLanded = false;
-                isCharging = true;
-            }
+            isLanded = false;
+            isCharging = true;
+        }
 
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                isCharged = true;
-            }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isCharged = true;
+        }
 
-            if (isCharging == true && isCharged == true)
-            {
-                jump = true;
-            }
+        if (isCharging == true && isCharged == true)
+        {
+            jump = true;
+        }
 
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            isHighLanded = false;
+            isLanded = false;
+            // Don't move if both keys are being pressed.
+            if (!(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow)))
             {
-                isHighLanded = false;
-                isLanded = false;
-                // Don't move if both keys are being pressed.
-                if (!(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow)))
+                dir = Input.GetAxisRaw("Horizontal");
+                if (dir != 0)
                 {
-                    dir = Input.GetAxisRaw("Horizontal");
-                    if (dir != 0)
+                    if (dir == -Math.Sign(rb.velocity.x))
                     {
-                        if (dir == -Math.Sign(rb.velocity.x))
-                        {
-                            SetFacingDirection(dir);
-                        }
+                        SetFacingDirection(dir);
                     }
-
-                    // Get direction for turning animations
-                    isGoingRight = dir > 0;
-                    isGoingLeft = dir < 0;
-
-                    if (isJumping) { oldDirOnJump = dir; }
-                    isRunning = true;
                 }
+
+                // Get direction for turning animations
+                isGoingRight = dir > 0;
+                isGoingLeft = dir < 0;
+
+                if (isJumping) { oldDirOnJump = dir; }
+                isRunning = true;
             }
-            else
+        }
+        else
+        {
+            isGoingLeft = false;
+            isGoingRight = false;
+            isRunning = false;
+        }
+
+        // Turning direction on animation
+        // Check if the velocity changes from positive to negative or from negative to positive
+        if (!isGrounded)
+        {
+            isTurningDirection = false;
+        }
+
+        if ((isGoingRight && rb.velocity.x < -2) || (isGoingLeft && rb.velocity.x > 2))
+        {
+            // Avoid bug when hitting on a wall and suddenly changing direction
+            if (!isHittingWall)
             {
-                isGoingLeft = false;
-                isGoingRight = false;
-                isRunning = false;
+                CreateTurningDust();
+                isTurningDirection = true;
+            }
+        }
+
+        if (!isRunning && isGrounded && !isCharging)
+        {
+            isHighLanded = false;
+            isLanded = false;
+
+            isLookingUp = Input.GetKey(KeyCode.UpArrow);
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 20f;
             }
 
-            // Turning direction on animation
-            // Check if the velocity changes from positive to negative or from negative to positive
-            if (!isGrounded)
+            if (Input.GetKeyUp(KeyCode.UpArrow))
             {
-                isTurningDirection = false;
+                alreadyCreatedCam = false;
+                Invoke("ResetCameraBlend", 0.5f);
             }
-
-            if ((isGoingRight && rb.velocity.x < -2) || (isGoingLeft && rb.velocity.x > 2))
+            if (isLookingUp)
             {
-                // Avoid bug when hitting on a wall and suddenly changing direction
-                if (!isHittingWall)
-                {
-                    CreateTurningDust();
-                    isTurningDirection = true;
-                }
-            }
-
-            if (!isRunning && isGrounded && !isCharging)
-            {
-                isHighLanded = false;
-                isLanded = false;
-
-                isLookingUp = Input.GetKey(KeyCode.UpArrow);
-
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 20f;
-                }
-
-                if (Input.GetKeyUp(KeyCode.UpArrow))
-                {
-                    alreadyCreatedCam = false;
-                    Invoke("ResetCameraBlend", 0.5f);
-                }
-                if (isLookingUp)
-                {
-                    SetLookUpCam();
-                }
+                SetLookUpCam();
             }
         }
 

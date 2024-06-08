@@ -20,6 +20,8 @@ public class MusicManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        musicSource.ignoreListenerPause = true;
     }
 
     public bool isPlayingMusic(string musicName)
