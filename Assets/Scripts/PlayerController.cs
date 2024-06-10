@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
         // Invert player
         if (!isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x * -1 / 2.5f, rb.velocity.y / 1.25f);
+            rb.velocity = new Vector2(rb.velocity.x * -1 / 1.80f, rb.velocity.y / 1.10f);
         }
 
         if (oldDirOnJump < 0.0 && !isFacingRight)
