@@ -20,12 +20,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dust 1
+  m_Name: Dust 2
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _COLORADDSUBDIFF_ON
+  - _COLOROVERLAY_ON
   - _EMISSION
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
@@ -46,7 +46,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: b5e89c3ef73835848a7264d5b98d058e, type: 3}
+        m_Texture: {fileID: 2800000, guid: defed91430df9aa4892f85a0d2714dd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -114,7 +114,7 @@ Material:
     - _CameraNearFadeDistance: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorMode: 1
+    - _ColorMode: 3
     - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
