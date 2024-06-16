@@ -40,6 +40,11 @@ public class SoundManager : MonoBehaviour
         sfx2DSource.PlayOneShot(sfxLibrary.GetClipFromName(soundName));
     }
 
+    public void StopSound()
+    {
+        sfx2DSource.Stop();
+    }
+
     public void SetActive(bool active)
     {
         Instance.gameObject.SetActive(active);
