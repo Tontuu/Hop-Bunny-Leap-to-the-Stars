@@ -77,8 +77,6 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentMap);
-
         if ((Player.transform.position.y - playerHeight) < Trigger1.transform.position.y)
         {
             currentMap = 1;

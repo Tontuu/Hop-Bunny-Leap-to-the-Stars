@@ -105,9 +105,17 @@ public class PlayerController : MonoBehaviour
             isCharging = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || jumpValue >= MAX_JUMP_MAGNITUDE)
         {
             isCharged = true;
+        }
+
+        if (isCharged)
+        {
+            if (!isGrounded)
+            {
+                isCharged = false;
+            }
         }
 
         if (isCharging == true && isCharged == true)
