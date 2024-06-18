@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Conditions
     private bool isOverBush = false;
     public bool isLookingUp = false;
-    private bool isCharging = false;
+    static public bool isCharging = false;
     private bool isCharged = false;
     private bool isGrounded = false;
     private bool isHighLanded = false;
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             isCharging = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) || chargeValue >= Constants.MAX_JUMP_MAGNITUDE)
+        if (Input.GetKeyUp(KeyCode.Space) || chargeValue >= Constants.MAX_JUMP_MAGNITUDE + Constants.DELAY_JUMP)
         {
             isCharged = true;
         }
@@ -239,10 +239,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
             chargeValue += Constants.JUMP_CHARGE_MAGNITUDE;
-            chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE);
+            chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE + Constants.DELAY_JUMP);
         }
         if (jump)
         {
+            chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE);
             SoundManager.Instance.PlaySound2D("Jump");
             SetFacingDirection(dir);
             rb.velocity = new Vector2(dir * Constants.HORIZONTAL_JUMP_SPEED, chargeValue);
