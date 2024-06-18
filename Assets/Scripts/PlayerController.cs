@@ -6,17 +6,11 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    // Constants
-    const float horizontalJumpSpeed = 15.0f;
-    const float runSpeed = 15.0f;
-    const float MAX_JUMP_MAGNITUDE = 52.0f;
-    const float JUMP_CHARGE_MAGNITUDE = 1.00f;
-    const float MIN_JUMP_MAGNITUDE = 15.0f;
-    public float PLAYER_GRAVITY = 7.0f;
 
     // Importants
     private bool jump = false;
-    public float jumpValue = 0.0f;
+    static public float chargeValue = 0.0f;
+    public float player_gravity = 7.0f;
 
     // Misc
     public Vector2 prevVelocity;
@@ -65,7 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         dir = 0;
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = PLAYER_GRAVITY;
+        rb.gravityScale = player_gravity;
         animator = GetComponent<Animator>();
         StartCoroutine(PlayFootstepSound());
         alreadyCreatedCam = false;
@@ -88,11 +82,11 @@ public class PlayerController : MonoBehaviour
         // Disable gravity if is not on the air
         if (!isJumping || isGrounded)
         {
-            PLAYER_GRAVITY = 0.0f;
+            player_gravity = 0.0f;
         }
         else
         {
-            PLAYER_GRAVITY = 7.0f;
+            player_gravity = 7.0f;
         }
 
         dir = 0;
@@ -105,7 +99,7 @@ public class PlayerController : MonoBehaviour
             isCharging = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) || jumpValue >= MAX_JUMP_MAGNITUDE)
+        if (Input.GetKeyUp(KeyCode.Space) || chargeValue >= Constants.MAX_JUMP_MAGNITUDE)
         {
             isCharged = true;
         }
@@ -244,21 +238,21 @@ public class PlayerController : MonoBehaviour
         if (isCharging)
         {
             rb.velocity = new Vector2(0, 0);
-            jumpValue += JUMP_CHARGE_MAGNITUDE;
-            jumpValue = Math.Clamp(jumpValue, MIN_JUMP_MAGNITUDE, MAX_JUMP_MAGNITUDE);
+            chargeValue += Constants.JUMP_CHARGE_MAGNITUDE;
+            chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE);
         }
         if (jump)
         {
             SoundManager.Instance.PlaySound2D("Jump");
             SetFacingDirection(dir);
-            rb.velocity = new Vector2(dir * horizontalJumpSpeed, jumpValue);
+            rb.velocity = new Vector2(dir * Constants.HORIZONTAL_JUMP_SPEED, chargeValue);
             isCharging = false;
             isCharged = false;
             isJumping = true;
             oneShotChargingSFX = false;
             jump = false;
-            CreateDust(jumpValue);
-            jumpValue = 0f;
+            CreateDust(chargeValue);
+            chargeValue = 0f;
         }
         OnRun();
     }
@@ -283,7 +277,7 @@ public class PlayerController : MonoBehaviour
                 Vector2 currentVelocity = rb.velocity;
 
                 // Calculate target velocity with acceleration  
-                Vector2 targetVelocity = new Vector2(dir * runSpeed, rb.velocity.y);
+                Vector2 targetVelocity = new Vector2(dir * Constants.RUN_SPEED, rb.velocity.y);
 
                 // Calculate the change in velocity  
                 Vector2 deltaVelocity = targetVelocity - currentVelocity;
@@ -375,8 +369,8 @@ public class PlayerController : MonoBehaviour
 
     void CreateDust(float magnitude)
     {
-        int speed = Mathf.RoundToInt(Utils.Map(magnitude, MIN_JUMP_MAGNITUDE, MAX_JUMP_MAGNITUDE, 2f, 6f));
-        int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, MIN_JUMP_MAGNITUDE, MAX_JUMP_MAGNITUDE, 20f, 120f));
+        int speed = Mathf.RoundToInt(Utils.Map(magnitude, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE, 2f, 6f));
+        int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE, 20f, 120f));
         ParticleSystem.VelocityOverLifetimeModule dustVel = dust.velocityOverLifetime;
         ParticleSystem.EmissionModule dustEmission = dust.emission;
         dustEmission.rateOverTime = emissionAmount;
