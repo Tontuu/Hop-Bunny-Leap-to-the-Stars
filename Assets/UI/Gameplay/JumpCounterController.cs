@@ -6,20 +6,29 @@ using UnityEngine.UI;
 
 public class JumpCounterController : MonoBehaviour
 {
-    int counter = 0;
-    Text text;
-    // Start is called before the first frame update
-    void Start()
+    public static JumpCounterController Instance;
+    static int counter = 0;
+    public TextMeshProUGUI text;
+
+    private void Awake()
     {
-        text = this.GetComponentInChildren<Text>();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateCounter()
     {
-         Debug.Log(text);
-         counter++;
-
-        //  text.text = counter + "\nJUMPS";
+        text.text = counter + "\nJUMPS";
+    }
+    public void IncrementCounter()
+    {
+        counter++;
+        UpdateCounter();
     }
 }

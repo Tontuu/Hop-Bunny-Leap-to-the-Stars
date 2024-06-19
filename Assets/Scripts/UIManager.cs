@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
+using UnityEditor.Overlays;
 
 public class UI : MonoBehaviour
 {
     public TextMeshProUGUI resolutionToggle;
     public TextMeshProUGUI resolutionLabel;
     public static bool isPaused;
+    public GameObject HudCanvas;
     public GameObject PauseCanvas;
     public GameObject MainScreen;
     public GameObject OptionScreen;
@@ -37,6 +39,7 @@ public class UI : MonoBehaviour
     {
         Time.timeScale = 0;
         isPaused = true;
+        HudCanvas.SetActive(false);
         PauseCanvas.SetActive(true);
         MainScreen.SetActive(true);
     }
@@ -45,6 +48,7 @@ public class UI : MonoBehaviour
     {
         Time.timeScale = 1;
         isPaused = false;
+        HudCanvas.SetActive(true);
         PauseCanvas.SetActive(false);
         MainScreen.SetActive(false);
         OptionScreen.SetActive(false);

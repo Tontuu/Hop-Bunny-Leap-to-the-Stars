@@ -243,6 +243,7 @@ public class PlayerController : MonoBehaviour
         }
         if (jump)
         {
+            JumpCounterController.Instance.IncrementCounter();
             chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE);
             SoundManager.Instance.PlaySound2D("Jump");
             SetFacingDirection(dir);

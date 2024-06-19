@@ -21,9 +21,13 @@ public class MapManager : MonoBehaviour
     public AudioSource ground02_AudioSource;
     public AudioSource ground03_AudioSource;
 
+    public GameObject FadeTransition;
+
 
     void Start()
     {
+        FadeTransition.SetActive(true);
+        JumpCounterController.Instance.UpdateCounter();
         soundPlayed01 = false;
         soundPlayed02 = false;
         SoundManager.Instance.SetActive(true);
