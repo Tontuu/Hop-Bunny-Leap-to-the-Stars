@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     const int orthoSizeNormal = 15;
     const int orthoSizeWideScreen = 13;
 
+    int zoomOffset = 0;
+
     // LookUp Funct
     public float yOffset;
 
@@ -25,6 +27,12 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        zoomOffset = 0;
+        if (CarrotController.reachedCarrot)
+        {
+            zoomOffset = 1;
+            FitCamToScreen();
+        }
         // Only Fit on screen change.
         if (Screen.width != startScreenWidth)
         {
@@ -46,6 +54,8 @@ public class CameraController : MonoBehaviour
         {
             newOrthoSize = orthoSizeNormal;
         }
-        vcam.m_Lens.OrthographicSize = newOrthoSize;
+
+        vcam.m_Lens.OrthographicSize = newOrthoSize - zoomOffset;
+
     }
 }

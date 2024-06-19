@@ -8,10 +8,13 @@ public class MapManager : MonoBehaviour
     static public int currentMap;
     private bool soundPlayed01;
     private bool soundPlayed02;
+
+    public Camera mainCam;
     public CinemachineVirtualCamera cam1;
     public CinemachineVirtualCamera cam2;
     public CinemachineVirtualCamera cam3;
     public CinemachineVirtualCamera lookUpCam;
+    public CinemachineVirtualCamera carrotCam;
     float playerHeight;
     public GameObject Player;
 
@@ -96,6 +99,15 @@ public class MapManager : MonoBehaviour
         {
             currentMap = 3;
             CameraManager.SwitchCamera(cam3);
+        }
+
+        if (CarrotController.reachedCarrot)
+        {
+            mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 30f;
+            CameraManager.SwitchCamera(carrotCam);
+        } else
+        {
+            mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 0.1f;
         }
 
         ManageMapSounds();
