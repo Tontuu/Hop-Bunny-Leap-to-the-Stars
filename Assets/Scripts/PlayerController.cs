@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     // Importants
     private bool jump = false;
     static public float chargeValue = 0.0f;
+    static public bool lookupCamActivity;
     public float player_gravity = 7.0f;
 
     // Misc
@@ -174,7 +175,11 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
+                lookupCamActivity = true;
                 mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 20f;
+            } else 
+            {
+                lookupCamActivity = true;
             }
 
             if (Input.GetKeyUp(KeyCode.UpArrow))

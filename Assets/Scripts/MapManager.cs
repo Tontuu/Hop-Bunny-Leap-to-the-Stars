@@ -107,7 +107,8 @@ public class MapManager : MonoBehaviour
             CameraManager.SwitchCamera(carrotCam);
         } else
         {
-            mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 0.1f;
+            if (!PlayerController.lookupCamActivity)
+                mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 0.1f;
         }
 
         ManageMapSounds();
