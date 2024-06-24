@@ -16,7 +16,9 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        FadeAnim.SetBool("FadeOut", false);
+        Cursor.visible = true;
+        if (FadeAnim)
+            FadeAnim.SetBool("FadeOut", false);
         MusicManager.Instance.PlayMusic("Estou mal");
     }
 

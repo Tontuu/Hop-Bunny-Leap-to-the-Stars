@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5938006022602682081
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 1
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.1
 --- !u!114 &-3840890878613496508
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -58,17 +42,17 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
   center:
-    m_OverrideState: 0
-    m_Value: {x: 0.5, y: 0.5}
+    m_OverrideState: 1
+    m_Value: {x: 0.5, y: 0.39}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.3
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.845
+    m_Value: 0.451
   rounded:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +68,6 @@ MonoBehaviour:
   components:
   - {fileID: 2122663585702768953}
   - {fileID: -3792388014359533812}
-  - {fileID: -5938006022602682081}
   - {fileID: -3840890878613496508}
   - {fileID: 1215930203252849837}
   - {fileID: 7423740970937808875}
@@ -313,10 +296,10 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.8
   intensity:
     m_OverrideState: 1
-    m_Value: 1.2
+    m_Value: 0.9
   scatter:
     m_OverrideState: 1
     m_Value: 0.43
@@ -324,8 +307,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 65472
   tint:
-    m_OverrideState: 0
-    m_Value: {r: 0.59474015, g: 0.74616677, b: 0.764151, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.94864583, g: 0.6462264, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -357,7 +340,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.09
+    m_Value: 0.4
   contrast:
     m_OverrideState: 1
     m_Value: 4

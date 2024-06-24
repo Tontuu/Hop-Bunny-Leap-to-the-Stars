@@ -232,6 +232,7 @@ ScriptedImporter:
     cells:
     - name: Hop turning_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 0
@@ -240,6 +241,7 @@ ScriptedImporter:
       spriteId: 3bb7e5e4a13eb02468d5ca8ade4cbabd
     - name: Hop turning_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 14
         y: 0
@@ -248,6 +250,7 @@ ScriptedImporter:
       spriteId: bf24c0fce3cf1d841ab6cae203d45f4d
     - name: Hop turning_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 0
@@ -256,6 +259,7 @@ ScriptedImporter:
       spriteId: f35cea30877e42c4fabf6b75d8b0b947
     - name: Hop turning_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 19
         y: 0
@@ -264,6 +268,7 @@ ScriptedImporter:
       spriteId: 16f7f0ef4af18d04faf2c88254e3a0b9
     - name: Hop turning_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 14
         y: 0

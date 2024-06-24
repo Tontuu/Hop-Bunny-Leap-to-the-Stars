@@ -292,6 +292,7 @@ ScriptedImporter:
     cells:
     - name: Hop falling_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 2
@@ -300,6 +301,7 @@ ScriptedImporter:
       spriteId: db67eeb5f51181148bf8a1569350e6b1
     - name: Hop falling_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 2
@@ -308,6 +310,7 @@ ScriptedImporter:
       spriteId: 48739615794af9245b424959e5db73c2
     - name: Hop falling_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 2
@@ -316,6 +319,7 @@ ScriptedImporter:
       spriteId: 4da390f5c5c4a3a4687f3fc52e222036
     - name: Hop falling_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 9
         y: 2
@@ -324,6 +328,7 @@ ScriptedImporter:
       spriteId: cde7d9c10c6720f42b830e96086311c2
     - name: Hop falling_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 2
@@ -332,6 +337,7 @@ ScriptedImporter:
       spriteId: f9a83d4b585636d46991810c2be13b07
     - name: Hop falling_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 2
@@ -340,6 +346,7 @@ ScriptedImporter:
       spriteId: 0037b571047d9ff409267b12c5b8cc24
     - name: Hop falling_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 2
@@ -348,6 +355,7 @@ ScriptedImporter:
       spriteId: e6633e7f708b9444b927ef18577974f7
     - name: Hop falling_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 9
         y: 2

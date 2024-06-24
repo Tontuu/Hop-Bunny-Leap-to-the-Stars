@@ -192,6 +192,7 @@ ScriptedImporter:
     cells:
     - name: Hop rising_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 9
@@ -200,6 +201,7 @@ ScriptedImporter:
       spriteId: b6d9048b135b29247868fb15543d10a1
     - name: Hop rising_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 8
@@ -208,6 +210,7 @@ ScriptedImporter:
       spriteId: c317ded5253a3eb479a4d1c82b2d51d0
     - name: Hop rising_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 8

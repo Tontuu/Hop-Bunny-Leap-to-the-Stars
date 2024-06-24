@@ -11,48 +11,13 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
     public GameObject canvas;
     public GameObject DialogueBoxPrefab;
-    public GameObject tutorialOverlay;
+    public Animator tutorialOverlay;
     public List<GameObject> openDialogueObjects;
     public Queue<string> sentences;
     public string npcName;
-
-    static bool isDialogueActive;
-    private bool finishedTutorial = false;
-    private bool isKeyPressed = false;
-    private float elapsedTime;
+    public static bool isDialogueActive;
     public float typingSpeed = 0.030f;
 
-
-    void Update()
-    {
-        if (isDialogueActive)
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                isKeyPressed = true;
-                if (!finishedTutorial)
-                {
-                    finishedTutorial = true;
-                    tutorialOverlay.GetComponent<Animator>().Play("press-e-hide");
-                }
-
-                elapsedTime = 0f;
-                DisplayNextDialogue();
-                isKeyPressed = false;
-            }
-            if (finishedTutorial)
-            {
-                elapsedTime += Time.deltaTime;
-            }
-
-            if (elapsedTime >= 15.0f && !isKeyPressed)
-            {
-                finishedTutorial = false;
-                elapsedTime = 0f;
-                tutorialOverlay.GetComponent<Animator>().Play("press-e-show");
-            }
-        }
-    }
 
     void Start()
     {
@@ -66,13 +31,31 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
     }
 
+    void Update()
+    {
+        if (isDialogueActive)
+        {
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                UI.finishedTutorial = true;
+                UI.elapsedTimeTutorial = 0f;
+                DisplayNextDialogue();
+            }
+        }
+    }
+
+
     public void StartDialogue(DialogueObject dialogue, Vector2 offset, Vector2 npcPos)
     {
         if (!MusicManager.Instance.isPlayingMusic("Estou mal"))
         {
             MusicManager.Instance.PlayMusic("Estou mal", 2f);
         }
+
         npcName = dialogue.npcName;
+
+        SoundManager.Instance.PlaySound2D(dialogue.audioclip);
+
         foreach (GameObject dialogueObject in openDialogueObjects)
         {
             if (dialogueObject != null)
@@ -82,7 +65,6 @@ public class DialogueManager : MonoBehaviour
             Invoke("DestroyDialogueObjects", 3);
         }
 
-        tutorialOverlay.GetComponent<Animator>().Play("press-e-show");
         isDialogueActive = true;
         sentences.Clear();
         foreach (string sentence in dialogue.sentences)
@@ -146,7 +128,7 @@ public class DialogueManager : MonoBehaviour
         {
             count++;
             dialogueArea.text += letter;
-            if (letter != ' ')
+            if (isDialogueActive && letter != ' ')
             {
                 if (characterCount >= 15)
                 {
