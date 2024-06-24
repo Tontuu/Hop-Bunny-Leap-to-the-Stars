@@ -213,6 +213,17 @@ MonoBehaviour:
   - groupID: Dropdown
     clips:
     - {fileID: 8300000, guid: d72cbadb358f54b4298fec5a06ff6d7a, type: 3}
+  - groupID: Mushroom-Bounce
+    clips:
+    - {fileID: 8300000, guid: cb0eaf16d2504fa4a9afdf8d98157a1b, type: 3}
+    - {fileID: 8300000, guid: 17463791cbd353942acc2add2683d66e, type: 3}
+    - {fileID: 8300000, guid: 90ad1457e47d83549b64468082f7fc15, type: 3}
+  - groupID: Crash
+    clips:
+    - {fileID: 8300000, guid: d4dbb69418603a9479bf4741679b8523, type: 3}
+  - groupID: Error
+    clips:
+    - {fileID: 8300000, guid: bbfb0ad45a722594b979b31d41b39d98, type: 3}
 --- !u!114 &3539529539967095135
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,10 +16,20 @@ public class UI : MonoBehaviour
     public GameObject MainScreen;
     public GameObject OptionScreen;
     public AudioMixer audioMixer;
+    public Animator tutorialOverlay;
+    public static float elapsedTimeTutorial;
+    public static bool finishedTutorial;
+
+    void Awake()
+    {
+        Cursor.visible = false;
+    }
 
     void Start()
     {
         isPaused = false;
+        elapsedTimeTutorial = 0f;
+        finishedTutorial = false;
     }
 
     void Update()
@@ -32,22 +42,45 @@ public class UI : MonoBehaviour
             else
                 HidePause();
         }
+
+
+        // Tutorial overlay
+        if (DialogueManager.isDialogueActive)
+        {
+            if (finishedTutorial == false)
+            {
+                tutorialOverlay.SetTrigger("show");
+            }
+            else
+            {
+                tutorialOverlay.SetTrigger("hide");
+                elapsedTimeTutorial += Time.deltaTime;
+            }
+
+            if (elapsedTimeTutorial >= 15.0f && finishedTutorial)
+            {
+                finishedTutorial = false;
+                elapsedTimeTutorial = 0f;
+            }
+        }
     }
 
     public void ShowPause()
     {
+        Cursor.visible = true;
         Time.timeScale = 0;
         isPaused = true;
-        HudCanvas.SetActive(false);
+        if (HudCanvas) HudCanvas.SetActive(false);
         PauseCanvas.SetActive(true);
         MainScreen.SetActive(true);
     }
 
     public void HidePause()
     {
+        Cursor.visible = false;
         Time.timeScale = 1;
         isPaused = false;
-        HudCanvas.SetActive(true);
+        if (HudCanvas) HudCanvas.SetActive(true);
         PauseCanvas.SetActive(false);
         MainScreen.SetActive(false);
         OptionScreen.SetActive(false);

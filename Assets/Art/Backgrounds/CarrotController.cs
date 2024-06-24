@@ -36,9 +36,9 @@ public class CarrotController : MonoBehaviour
     }
 
 
-        IEnumerator ResetCamera()
-        {
-            yield return new WaitForSeconds(1.5f);
-            reachedCarrot = false;
-        }
+    IEnumerator ResetCamera()
+    {
+        yield return new WaitForSeconds(1.5f);
+        reachedCarrot = false;
+    }
 }

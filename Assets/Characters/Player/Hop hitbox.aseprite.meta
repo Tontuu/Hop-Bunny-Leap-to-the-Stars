@@ -152,6 +152,7 @@ ScriptedImporter:
     cells:
     - name: Hop hitbox
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 0
