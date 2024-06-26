@@ -1,15 +1,17 @@
+using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
 using Cinemachine;
 using System.Collections;
+using UnityEditor.Rendering.LookDev;
+using System.Threading;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
 
     // Importants
-    private bool jump = false;
-    static public float chargeValue = 0.0f;
+    private Vector2 moveDir;
     static public bool lookupCamActivity;
     public float player_gravity = 7.0f;
 
@@ -30,13 +32,10 @@ public class PlayerController : MonoBehaviour
     // Conditions
     private bool isOverBush = false;
     public bool isLookingUp = false;
-    static public bool isCharging = false;
-    private bool isCharged = false;
-    private bool isGrounded = false;
-    private bool isHighLanded = false;
-    private bool isLanded = false;
+    public bool isCharging = false;
+    public bool isJumping = false;
+    public bool isGrounded = false;
     private bool isRunning = false;
-    private bool isJumping = false;
     private bool isRising = false;
     private bool isFalling = false;
     private bool isFacingRight = true;
@@ -44,27 +43,29 @@ public class PlayerController : MonoBehaviour
     private bool isGoingLeft = false;
     private bool isTurningDirection = false;
     private bool isHittingWall = false;
-    private bool isOneShotSound = false;
-    private bool oneShotChargingSFX = false;
     public bool alreadyCreatedCam = false;
 
     // Unity items
+    public ChargeHandler chargeHandler;
+    private InputActionReference inputReference;
     public CinemachineVirtualCamera LookUpCam;
     public CinemachineVirtualCamera vCam;
     public Camera mainCam;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     Animator animator;
     public AudioSource sfx;
 
     void Start()
     {
         dir = 0;
+        chargeHandler = GetComponent<ChargeHandler>();
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = player_gravity;
         animator = GetComponent<Animator>();
         StartCoroutine(PlayFootstepSound());
         alreadyCreatedCam = false;
     }
+
 
     void HandleStates()
     {
@@ -94,58 +95,17 @@ public class PlayerController : MonoBehaviour
         // Handle inputs
         if (UI.isPaused) return;
 
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
-        {
-            isLanded = false;
-            isCharging = true;
-        }
+        dir = moveDir.x;
 
-        if (Input.GetKeyUp(KeyCode.Space) || chargeValue >= Constants.MAX_JUMP_MAGNITUDE + Constants.DELAY_JUMP)
-        {
-            isCharged = true;
-        }
-
-        if (isCharged)
-        {
-            if (!isGrounded)
-            {
-                isCharged = false;
-            }
-        }
-
-        if (isCharging == true && isCharged == true)
-        {
-            jump = true;
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            isHighLanded = false;
-            isLanded = false;
-            // Don't move if both keys are being pressed.
-            if (!(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow)))
-            {
-                dir = Input.GetAxisRaw("Horizontal");
-                if (dir != 0)
-                {
-                    if (dir == -Math.Sign(rb.velocity.x))
-                    {
-                        SetFacingDirection(dir);
-                    }
-                }
-
-                // Get direction for turning animations
-                isGoingRight = dir > 0;
-                isGoingLeft = dir < 0;
-
-                if (isJumping) { oldDirOnJump = dir; }
-                isRunning = true;
-            }
-        }
+        isGoingRight = dir > 0;
+        isGoingLeft = dir < 0;
+        if (isJumping) { oldDirOnJump = dir; }
+        if (dir != 0)
+            isRunning = true;
         else
         {
-            isGoingLeft = false;
             isGoingRight = false;
+            isGoingLeft = false;
             isRunning = false;
         }
 
@@ -168,16 +128,14 @@ public class PlayerController : MonoBehaviour
 
         if (!isRunning && isGrounded && !isCharging)
         {
-            isHighLanded = false;
-            isLanded = false;
-
             isLookingUp = Input.GetKey(KeyCode.UpArrow);
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 lookupCamActivity = true;
                 mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 20f;
-            } else 
+            }
+            else
             {
                 lookupCamActivity = true;
             }
@@ -229,41 +187,18 @@ public class PlayerController : MonoBehaviour
             isTurningDirection = false;
         }
 
-        // Sound manager
-        if (!oneShotChargingSFX)
-        {
-            if (isCharging) { SoundManager.Instance.PlaySound2D("Charging"); oneShotChargingSFX = true; }
-        }
-
         // Handle animation states
         HandleStates();
     }
     void FixedUpdate()
     {
-        if (isCharging)
-        {
-            rb.velocity = new Vector2(0, 0);
-            chargeValue += Constants.JUMP_CHARGE_MAGNITUDE;
-            chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE + Constants.DELAY_JUMP);
-        }
-        if (jump)
-        {
-            JumpCounterController.Instance.IncrementCounter();
-            chargeValue = Math.Clamp(chargeValue, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE);
-            SoundManager.Instance.PlaySound2D("Jump");
-            SetFacingDirection(dir);
-            rb.velocity = new Vector2(dir * Constants.HORIZONTAL_JUMP_SPEED, chargeValue);
-            isCharging = false;
-            isCharged = false;
-            isJumping = true;
-            oneShotChargingSFX = false;
-            jump = false;
-            CreateDust(chargeValue);
-            chargeValue = 0f;
-        }
         OnRun();
     }
 
+    public void OnMove(InputAction.CallbackContext ctx)
+    {
+        moveDir = ctx.ReadValue<Vector2>();
+    }
 
     void OnRun()
     {
@@ -319,7 +254,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetFacingDirection(float dir)
+    public void SetFacingDirection(float dir)
     {
         if (!isJumping)
         {
@@ -374,7 +309,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CreateDust(float magnitude)
+    public void CreateDust(float magnitude)
     {
         int speed = Mathf.RoundToInt(Utils.Map(magnitude, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE, 2f, 6f));
         int emissionAmount = Mathf.RoundToInt(Utils.Map(magnitude, Constants.MIN_JUMP_MAGNITUDE, Constants.MAX_JUMP_MAGNITUDE, 20f, 120f));
@@ -459,12 +394,10 @@ public class PlayerController : MonoBehaviour
                 if (prevVelocity.y < -50f)
                 {
                     SoundManager.Instance.PlaySound2D("HighLand");
-                    isHighLanded = true;
                 }
                 else
                 {
                     SoundManager.Instance.PlaySound2D("Land");
-                    isLanded = true;
                 }
             }
             CreateLandDust(rb.velocity.magnitude);
@@ -501,11 +434,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (isOverBush) SoundManager.Instance.PlaySound2D("Interactive-Run");
                 else SoundManager.Instance.PlaySound2D("Run");
-            }
-
-            if (jump)
-            {
-                SoundManager.Instance.PlaySound2D("Jump");
             }
 
             yield return new WaitForSeconds(0.3f);

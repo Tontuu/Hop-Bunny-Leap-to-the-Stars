@@ -22,6 +22,10 @@ public class JumpCounterController : MonoBehaviour
         }
     }
 
+    public void ResetCounter()
+    {
+        counter = 0;
+    }
     public void UpdateCounter()
     {
         text.text = counter + "\nJUMPS";

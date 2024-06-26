@@ -8,6 +8,7 @@ using TMPro;
 
 public class UI : MonoBehaviour
 {
+    public DialogueManager dialogueManager;
     public TextMeshProUGUI resolutionToggle;
     public TextMeshProUGUI resolutionLabel;
     public static bool isPaused;
@@ -35,7 +36,7 @@ public class UI : MonoBehaviour
     void Update()
     {
         FlushText();
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetButtonDown("Options"))
         {
             if (!isPaused)
                 ShowPause();
@@ -43,20 +44,19 @@ public class UI : MonoBehaviour
                 HidePause();
         }
 
-
         // Tutorial overlay
-        if (DialogueManager.isDialogueActive)
+        if (finishedTutorial == false)
         {
-            if (finishedTutorial == false)
-            {
+            if (dialogueManager.isDialogueActive)
                 tutorialOverlay.SetTrigger("show");
-            }
-            else
-            {
-                tutorialOverlay.SetTrigger("hide");
-                elapsedTimeTutorial += Time.deltaTime;
-            }
-
+        }
+        else
+        {
+            tutorialOverlay.SetTrigger("hide");
+            elapsedTimeTutorial += Time.deltaTime;
+        }
+        if (dialogueManager.isDialogueActive)
+        {
             if (elapsedTimeTutorial >= 15.0f && finishedTutorial)
             {
                 finishedTutorial = false;

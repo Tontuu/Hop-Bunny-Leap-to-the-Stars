@@ -41,7 +41,7 @@ public class CutsceneManager : MonoBehaviour
             || Input.GetMouseButtonDown(2))
                 return;
 
-            if (!Input.GetKeyDown(KeyCode.Escape))
+            if (!Input.GetButtonDown("Option"))
             {
                 SoundManager.Instance.PlaySound2D("Error");
             }

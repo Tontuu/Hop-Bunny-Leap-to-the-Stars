@@ -12,6 +12,7 @@ public class FinalCutscene : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            JumpCounterController.Instance.ResetCounter();
             MusicManager.Instance.PlayMusic("Silence", 1f);
             StartCoroutine((FadeToCutscene()));
         }

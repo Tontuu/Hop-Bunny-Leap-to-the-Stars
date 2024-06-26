@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public List<GameObject> openDialogueObjects;
     public Queue<string> sentences;
     public string npcName;
-    public static bool isDialogueActive;
+    public bool isDialogueActive;
     public float typingSpeed = 0.030f;
 
 
@@ -31,19 +31,12 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
     }
 
-    void Update()
+    public void InteractWithNpc()
     {
-        if (isDialogueActive)
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                UI.finishedTutorial = true;
-                UI.elapsedTimeTutorial = 0f;
-                DisplayNextDialogue();
-            }
-        }
+        UI.finishedTutorial = true;
+        UI.elapsedTimeTutorial = 0f;
+        DisplayNextDialogue();
     }
-
 
     public void StartDialogue(DialogueObject dialogue, Vector2 offset, Vector2 npcPos)
     {
@@ -153,8 +146,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
+        UI.finishedTutorial = true;
         MusicManager.Instance.PlayMusic("Estou feliz", 2f);
         foreach (GameObject dialogueObject in openDialogueObjects)
         {

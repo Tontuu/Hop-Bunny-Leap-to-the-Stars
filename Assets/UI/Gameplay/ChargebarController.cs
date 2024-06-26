@@ -7,6 +7,7 @@ public class ChargebarController : MonoBehaviour
     private Animator animator;
     private int numberOfBars = 6;
     private bool startedToCharge = false;
+    public PlayerController player;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class ChargebarController : MonoBehaviour
 
     void UpdateChargebar()
     {
-        int bar_index = GetChargeBarIndex(PlayerController.chargeValue, Constants.MAX_JUMP_MAGNITUDE);
+        int bar_index = GetChargeBarIndex(player.chargeHandler.chargeValue, Constants.MAX_JUMP_MAGNITUDE);
         if (bar_index <= numberOfBars)
         {
             gameObject.GetComponent<Image>().sprite = sprite_bars[bar_index];
@@ -28,7 +29,7 @@ public class ChargebarController : MonoBehaviour
             animator.Play("chargebar-charged");
         }
 
-        if (PlayerController.isCharging == false)
+        if (player.isCharging == false)
         {
             animator.enabled = false;
             gameObject.GetComponent<Image>().sprite = sprite_bars[0];
