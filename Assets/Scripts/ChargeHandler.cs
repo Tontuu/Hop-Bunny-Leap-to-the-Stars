@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,7 +43,7 @@ public class ChargeHandler : MonoBehaviour
             player.rb.velocity = new Vector2(0, 0);
 
             // Increase charge value
-            chargeValue += Time.fixedDeltaTime * Constants.JUMP_CHARGE_MAGNITUDE; // Adjust the speed as needed
+            chargeValue += Constants.JUMP_CHARGE_MAGNITUDE; // Adjust the speed as needed
 
             // Check if charge reaches 100
             if (chargeValue >= Constants.MAX_JUMP_MAGNITUDE + Constants.DELAY_JUMP && !forceRelease)
@@ -53,6 +52,7 @@ public class ChargeHandler : MonoBehaviour
                 OnChargeCanceled(default);
             }
         }
+
     }
 
     private void OnChargeStarted(InputAction.CallbackContext context)
@@ -76,10 +76,10 @@ public class ChargeHandler : MonoBehaviour
 
             JumpCounterController.Instance.IncrementCounter();
             SoundManager.Instance.PlaySound2D("Jump");
-            player.SetFacingDirection(player.dir);
 
             player.CreateDust(chargeValue);
             player.rb.velocity = new Vector2(player.dir * Constants.HORIZONTAL_JUMP_SPEED, chargeValue);
+            player.SetFacingDirection(player.dir);
 
             // Reset the charge value
             chargeValue = 0;

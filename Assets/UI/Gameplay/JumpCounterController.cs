@@ -28,7 +28,7 @@ public class JumpCounterController : MonoBehaviour
     }
     public void UpdateCounter()
     {
-        text.text = counter + "\nJUMPS";
+        text.text = counter + "\nPULOS";
     }
     public void IncrementCounter()
     {

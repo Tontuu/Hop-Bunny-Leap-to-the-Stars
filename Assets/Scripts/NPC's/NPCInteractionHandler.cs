@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class NPCInteractionHandler : MonoBehaviour
 {
+    public Animator tutorialImage;
     public DialogueManager dialogueManager;
 
     // Reference to the input actions
@@ -32,6 +33,14 @@ public class NPCInteractionHandler : MonoBehaviour
         inputActions.Disable();
     }
 
+    public void Update()
+    {
+        if (Gamepad.all.Count > 0)
+        {
+            tutorialImage.SetBool("Gamepad", true);
+        }
+    }
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (ctx.canceled)
@@ -40,6 +49,18 @@ public class NPCInteractionHandler : MonoBehaviour
             {
                 dialogueManager.InteractWithNpc();
             }
+        }
+    }
+
+    public void OnJoin(InputAction.CallbackContext ctx)
+    {
+        if (ctx.control.device is Keyboard)
+        {
+            tutorialImage.SetBool("Gamepad", false);
+        }
+        else if (ctx.control.device is Gamepad)
+        {
+            tutorialImage.SetBool("Gamepad", true);
         }
     }
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 using System;
 using Cinemachine;
 using System.Collections;
-using UnityEditor.Rendering.LookDev;
 using System.Threading;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem wallDust;
     public ParticleSystem landDust;
     public ParticleSystem turningDust;
-    private float oldDirOnJump;
+    public float oldDirOnJump;
     public float dir;
     public float desacceleration_value = 0.9f;
     [SerializeField]
@@ -57,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        isLookingUp = false;
         dir = 0;
         chargeHandler = GetComponent<ChargeHandler>();
         rb = GetComponent<Rigidbody2D>();
@@ -128,26 +128,13 @@ public class PlayerController : MonoBehaviour
 
         if (!isRunning && isGrounded && !isCharging)
         {
-            isLookingUp = Input.GetKey(KeyCode.UpArrow);
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (isLookingUp)            
             {
                 lookupCamActivity = true;
                 mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 20f;
-            }
-            else
-            {
-                lookupCamActivity = true;
-            }
-
-            if (Input.GetKeyUp(KeyCode.UpArrow))
-            {
-                alreadyCreatedCam = false;
-                Invoke("ResetCameraBlend", 0.5f);
-            }
-            if (isLookingUp)
-            {
                 SetLookUpCam();
+            } else {
+                lookupCamActivity = true;
             }
         }
 
@@ -256,7 +243,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetFacingDirection(float dir)
     {
-        if (!isJumping)
+        if (isGrounded)
         {
             if (dir > 0.0 && !isFacingRight)
             {
@@ -271,10 +258,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ResetCameraBlend()
-    {
-        mainCam.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = 0.1f;
-    }
 
     private void SetLookUpCam()
     {

@@ -20,11 +20,21 @@ public class TriggerZone : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        dialogueTrigger.TriggerDialogue();
+        if (!dialogueManager.isDialogueActive)
+        {
+            StopAllCoroutines();
+            dialogueTrigger.TriggerDialogue();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        StartCoroutine(DelayEndDialogue());
+    }
+
+    IEnumerator DelayEndDialogue()
+    {
+        yield return new WaitForSeconds(6);
         dialogueManager.EndDialogue();
     }
 }
